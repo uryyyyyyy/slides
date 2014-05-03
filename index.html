@@ -42,10 +42,55 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+			<section>
+				<section>
+					<h1>Reveal.js</h1>
+					<h3>HTML Presentations Made Easy</h3>
+					<p>
+						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+					</p>
+				</section>
+				<section id="transitions">
+					<h2>Transition Styles</h2>
+					<p>
+						You can select from different transitions, like: <br>
+						<a href="?transition=cube#/transitions">Cube</a> -
+						<a href="?transition=page#/transitions">Page</a> -
+						<a href="?transition=concave#/transitions">Concave</a> -
+						<a href="?transition=zoom#/transitions">Zoom</a> -
+						<a href="?transition=linear#/transitions">Linear</a> -
+						<a href="?transition=fade#/transitions">Fade</a> -
+						<a href="?transition=none#/transitions">None</a> -
+						<a href="?#/transitions">Default</a>
+					</p>
+				</section>
+				<section id="themes">
+					<h2>Themes</h2>
+					<p>
+						Reveal.js comes with a few themes built in: <br>
+						<a href="?#/themes">Default</a> -
+						<a href="?theme=sky#/themes">Sky</a> -
+						<a href="?theme=beige#/themes">Beige</a> -
+						<a href="?theme=simple#/themes">Simple</a> -
+						<a href="?theme=serif#/themes">Serif</a> -
+						<a href="?theme=night#/themes">Night</a> <br>
+						<a href="?theme=moon#/themes">Moon</a> -
+						<a href="?theme=solarized#/themes">Solarized</a>
+					</p>
+					<p>
+						<small>
+							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
+						</small>
+					</p>
+				</section>
+			</section>
+
+
 				<section data-markdown="main_text/index.md"
 					data-separator="\n---\n$"
 					data-charset="UTF-8"
-					data-vertical="\n--\n">
+					data-vertical="\n--\n"
+					data-transition="cube">
 					<script type="text/template">
 					</script>
 				</section>
