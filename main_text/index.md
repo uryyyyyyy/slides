@@ -16,6 +16,7 @@
 code
 
 ```html
+
 <section>
     <h2>Some Slide</h2>
 
@@ -23,4 +24,5 @@ code
         Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
     </aside>
 </section>
+
 ```
