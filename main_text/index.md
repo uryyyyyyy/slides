@@ -14,9 +14,9 @@
 
 ---
 
-code
+## code
 
-```html
+```html:sample.html
 
 <section>
     <h2>Some Slide</h2>
@@ -28,7 +28,7 @@ miku.png
 
 ```
 
-quote
+## quote
 
 > quoted words
 
@@ -40,3 +40,7 @@ quote
 
 #### ミクジャナイヨー
 ![Alt Text](img/hako_shiba_bigger.png)
+
+## link
+
+[ﾘﾝｸﾀﾞﾖｰ][https://github.com/uryyyyyyy]
