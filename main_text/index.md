@@ -33,4 +33,4 @@ quote
 
 ---
 
-![Alt Text](img/miku.png)
+![Alt Text](img/hako_shiba_bigger.png)
