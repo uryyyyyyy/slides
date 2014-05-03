@@ -17,6 +17,7 @@
 ## code
 
 ```java:sample.java
+
 public static void main(String[] args) {
 		try{
 			final long startTime = System.currentTimeMillis();
