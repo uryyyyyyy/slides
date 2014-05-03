@@ -29,4 +29,4 @@ code
 
 quote
 
-> quated words
+> quoted words
