@@ -30,3 +30,7 @@ code
 quote
 
 > quoted words
+
+---
+
+![Alt Text](img/miku.png)
