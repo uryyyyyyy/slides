@@ -37,9 +37,29 @@ public static void main(String[] args) {
 
 ```
 
+if you use one sentence, like this.``int main(void)``
+
 ## quote
 
 > quoted words
+
+---
+
+## table
+
+| Left align | Right align | Center align 
+            |:-----------|------------:|:------------:|
+            | This       |        This |     This     
+            | column     |      column |    column    |
+            | will       |        will |     will     |
+            | be         |          be |      be      |
+            | left       |       right |    center    |
+            | aligned    |     aligned |   aligned    |
+
+## escape
+
+\# hoge
+\- escaped
 
 ---
 
@@ -53,3 +73,5 @@ public static void main(String[] args) {
 ## link
 
 [ﾘﾝｸﾀﾞﾖｰ](https://github.com/uryyyyyyy)
+
+[index.md](http://uryyyyyyy.github.io/slides/main_text/index.md)
