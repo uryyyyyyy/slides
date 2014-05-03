@@ -16,15 +16,23 @@
 
 ## code
 
-```html:sample.html
+```java:sample.java
+public static void main(String[] args) {
+		try{
+			final long startTime = System.currentTimeMillis();
 
-<section>
-    <h2>Some Slide</h2>
-miku.png
-    <aside class="notes">
-        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-    </aside>
-</section>
+			System.out.println("入力値");
+			List<Integer> inputs = load(args);
+			List<Integer> outputs = execute(inputs);
+			System.out.println("出力値");
+			write(outputs);
+
+			final long endTime = System.currentTimeMillis();
+			System.out.println(endTime - startTime + "ms かかりました。");
+		}catch(Exception e){
+			System.out.println("エラーです。ログを確認してください。");
+		}
+	}
 
 ```
 
