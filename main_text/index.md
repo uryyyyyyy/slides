@@ -43,4 +43,4 @@ miku.png
 
 ## link
 
-[ﾘﾝｸﾀﾞﾖｰ][https://github.com/uryyyyyyy]
+[ﾘﾝｸﾀﾞﾖｰ](https://github.com/uryyyyyyy)
