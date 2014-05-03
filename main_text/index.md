@@ -37,7 +37,7 @@ public static void main(String[] args) {
 
 ```
 
-if you use one sentence, like this.``int main(void)``
+if you use one sentence, like this.`int main(void)`
 
 ## quote
 
