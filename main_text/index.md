@@ -41,7 +41,7 @@ if you use one sentence, like this `int main(void)` dayo-.
 
 ## quote
 
-> quoted words
+> ぽっぴっぽー by 初音ミク
 
 ---
 
