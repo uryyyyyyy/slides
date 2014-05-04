@@ -67,8 +67,8 @@ if you use one sentence, like this `int main(void)` dayo-.
 
 ### ガゾウダヨー
 
-#### ミクジャナイヨー
-![Alt Text](img/hako_shiba_bigger.png)
+#### ミクダヨー
+![Alt Text](img/miku.png)
 
 ## link
 
@@ -79,5 +79,5 @@ if you use one sentence, like this `int main(void)` dayo-.
 ---
 
 ## embeded
-
+ビバハピ♪
 <iframe width="560" height="315" src="//www.youtube.com/embed/WiUjG9fF3zw" frameborder="0" allowfullscreen></iframe>
