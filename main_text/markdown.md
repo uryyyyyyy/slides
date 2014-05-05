@@ -34,7 +34,7 @@
  - 軽量マークアップ言語
  - 拡張子→.md, .mkd, .markdownなど。
  - 中身はただのテキストファイル
-
+http://uryyyyyyy.github.io/slides/markdown.html#/9
 [かきかた][1]
 
 [公式ページ][2]
@@ -170,5 +170,5 @@ Readmeを書くときに便利です。
   [9]: http://uryyyyyyy.github.io/slides/main_text/index.md
   [10]: https://github.com/uryyyyyyy/slides/tree/gh-pages
   [11]: http://www.lifehacker.jp/images/2013/06/130611Markdown1.jpg
-  [12]: http://moke
+  [12]: http://uryyyyyyy.github.io/slides/main_text/markdwon.md
 </markdown></p>
