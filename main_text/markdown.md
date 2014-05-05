@@ -35,9 +35,9 @@
  - 拡張子→.md, .mkd, .markdownなど。
  - 中身はただのテキストファイル
 
-[書き方][1]
+[書き方][http://kojika17.com/2013/01/starting-markdown.html]
 
-[公式ページ][2]
+[公式ページ][http://daringfireball.nhttps://github.com/uryyyyyyy/slideset/projects/markdown/]
 
 --
 
@@ -159,8 +159,8 @@ Readmeを書くときに便利です。
 今回のスライドの中身は[こちら][12]
 
 
-  [1]: http://kojika17.com/2013/01/starting-markdown.html
-  [2]: http://daringfireball.nhttps://github.com/uryyyyyyy/slideset/projects/markdown/
+  [1]: 
+  [2]: 
   [3]: http://jrmoran.com/playground/markdown-live-editor/
   [4]: http://sonoshou.hatenablog.jp/entry/2013/12/20/Sublime_Text_%E3%81%A7_Markdown%EF%BC%8E
   [5]: http://www.find-job.net/startup/20-markdown-editors
