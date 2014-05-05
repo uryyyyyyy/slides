@@ -29,7 +29,7 @@
 
 [使い方サンプル](http://kojika17.com/2013/01/starting-markdown.html)
 
-[公式ページ](http://daringfireball.nhttps://github.com/uryyyyyyy/slideset/projects/markdown/)
+[公式ページ](http://daringfireball.net/projects/markdown/)
 
 --
 
