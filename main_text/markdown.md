@@ -76,22 +76,22 @@ markdown + DropBoxを使うとevernoteとか重たくて使えません。
 
 ### PC
 
- - [ブラウザから][3]
- - [おなじみSublimeText][4]
+ - [ブラウザから](http://jrmoran.com/playground/markdown-live-editor/)
+ - [おなじみSublimeText](http://sonoshou.hatenablog.jp/entry/2013/12/20/Sublime_Text_%E3%81%A7_Markdown%EF%BC%8E)
  - もちろんデフォルトのメモ帳でも（エンコードに注意）
 
 ちょっと書くならgedit（Ubuntuのメモ帳）で十分だけど、しっかり書くならブラウザのが補完とか便利なのでオススメ。
 
-他にも色々→[エディタ20選][5]
+他にも色々→[エディタ20選](http://www.find-job.net/startup/20-markdown-editors)
 
 --
 
 ### IOS
 
- - [Write][6]
- - [Plain Text][7]
+ - [Write](http://lifehacking.jp/2014/01/write/)
+ - [Plain Text](http://www.appbank.net/2014/01/09/iphone-application/730935.php)
 
-これに関しては、**同期が簡単・軽い**ことが必須なので、個人的にはPlainText推しです。拡張子がtxtになりますが。
+これに関しては、**同期が簡単・軽い**ことが必須なので、個人的にはPlainText推しです。拡張子がtxtになりhttp://lifehacking.jp/2014/01/write/ますが。
 Writeは買ってみたものの、日本語入力に難があったり、同期が不十分だったりとイマイチ。
 
 ---
@@ -108,17 +108,17 @@ Writeは買ってみたものの、日本語入力に難があったり、同期
 
 ## reveal.js & markdown
 
-[デモ][8]
+[デモ](http://uryyyyyyy.github.io/slides/#/)
 
 これ、実は中身はmarkdownで書かれています。
 
-[中身][9]
+[中身](http://uryyyyyyy.github.io/slides/main_text/index.md)
 
 --
 
 ## 使い方
 
-[こちらから][10] ダウンロードしてきて、index.htmlの中身をいじるだけ。
+[こちらから](https://github.com/uryyyyyyy/slides/tree/gh-pages)ダウンロードしてきて、index.htmlの中身をいじるだけ。
 
 真ん中あたりのindex.mdを読んでるところへ、自分のmarkdownをそのまま貼り付ければOK。記法はサンプルを見ればわかります。
 
@@ -158,17 +158,6 @@ Readmeを書くときに便利です。
 
 今回のスライドの中身は[こちら][12]
 
-
-  [1]: http://kojika17.com/2013/01/starting-markdown.html
-  [2]: http://daringfireball.nhttps://github.com/uryyyyyyy/slideset/projects/markdown/
-  [3]: http://jrmoran.com/playground/markdown-live-editor/
-  [4]: http://sonoshou.hatenablog.jp/entry/2013/12/20/Sublime_Text_%E3%81%A7_Markdown%EF%BC%8E
-  [5]: http://www.find-job.net/startup/20-markdown-editors
-  [6]: http://lifehacking.jp/2014/01/write/
-  [7]: http://www.appbank.net/2014/01/09/iphone-application/730935.php
-  [8]: http://uryyyyyyy.github.io/slides/#/
-  [9]: http://uryyyyyyy.github.io/slides/main_text/index.md
-  [10]: https://github.com/uryyyyyyy/slides/tree/gh-pages
   [11]: http://www.lifehacker.jp/images/2013/06/130611Markdown1.jpg
   [12]: http://uryyyyyyy.github.io/slides/main_text/markdown.md
 </markdown></p>
