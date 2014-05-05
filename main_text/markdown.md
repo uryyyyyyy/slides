@@ -114,7 +114,7 @@ Writeは買ってみたものの、日本語入力に難があったり、同期
 
 [中身][9]
 
--- 
+--
 
 ## 使い方
 
@@ -126,8 +126,7 @@ Writeは買ってみたものの、日本語入力に難があったり、同期
 
 **PDFでも使えて便利ですよ！**
 
-
---- 
+---
 
 ## Blogや書き物に。
 
@@ -164,7 +163,7 @@ Readmeを書くときに便利です。
 
 
   [1]: http://kojika17.com/2013/01/starting-markdown.html
-  [2]: http://daringfireball.net/projects/markdown/
+  [2]: http://daringfireball.nhttps://github.com/uryyyyyyy/slideset/projects/markdown/
   [3]: http://jrmoran.com/playground/markdown-live-editor/
   [4]: http://sonoshou.hatenablog.jp/entry/2013/12/20/Sublime_Text_%E3%81%A7_Markdown%EF%BC%8E
   [5]: http://www.find-job.net/startup/20-markdown-editors
@@ -172,7 +171,7 @@ Readmeを書くときに便利です。
   [7]: http://www.appbank.net/2014/01/09/iphone-application/730935.php
   [8]: http://uryyyyyyy.github.io/slides/#/
   [9]: http://uryyyyyyy.github.io/slides/main_text/index.md
-  [10]: https://github.com/uryyyyyyy/slides
+  [10]: https://github.com/uryyyyyyy/slides/tree/gh-pages
   [11]: http://www.lifehacker.jp/images/2013/06/130611Markdown1.jpg
   [12]: http://moke
 </markdown></p>
