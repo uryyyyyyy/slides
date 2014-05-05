@@ -34,10 +34,10 @@
  - 軽量マークアップ言語
  - 拡張子→.md, .mkd, .markdownなど。
  - 中身はただのテキストファイル
-http://uryyyyyyy.github.io/slides/markdown.html#/9
-[こちら][12]
 
-[公式ページ][2]
+[使い方](http://kojika17.com/2013/01/starting-markdown.html)
+
+[公式ページ](http://daringfireball.nhttps://github.com/uryyyyyyy/slideset/projects/markdown/)
 
 --
 
