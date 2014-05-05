@@ -155,6 +155,7 @@ Readmeを書くときに便利です。
 サクッと覚えられるのでぜひ活用を！
 
 ![alt text][11]
+
 *by Life Hacker*
 
 
