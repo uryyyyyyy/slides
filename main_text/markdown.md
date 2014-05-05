@@ -91,7 +91,7 @@ markdown + DropBoxを使うとevernoteとか重たくて使えません。
  - [Write](http://lifehacking.jp/2014/01/write/)
  - [Plain Text](http://www.appbank.net/2014/01/09/iphone-application/730935.php)
 
-これに関しては、**同期が簡単・軽い**ことが必須なので、個人的にはPlainText推しです。拡張子がtxtになりhttp://lifehacking.jp/2014/01/write/ますが。
+これに関しては、**同期が簡単・軽い**ことが必須なので、個人的にはPlainText推しです。拡張子がtxtになりますが。
 Writeは買ってみたものの、日本語入力に難があったり、同期が不十分だったりとイマイチ。
 
 ---
