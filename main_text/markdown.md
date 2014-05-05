@@ -142,13 +142,11 @@ Writeは買ってみたものの、日本語入力に難があったり、同期
 
 ### github.io 母艦として。
 
-
 --- 
 
 ## Github
 
 Readmeを書くときに便利です。
-
 
 --- 
 
@@ -158,8 +156,6 @@ Readmeを書くときに便利です。
 ![alt text][11]
 
 今回のスライドの中身は[こちら][12]
-
----
 
 
   [1]: http://kojika17.com/2013/01/starting-markdown.html
