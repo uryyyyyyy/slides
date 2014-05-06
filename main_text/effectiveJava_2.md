@@ -201,3 +201,8 @@ Collection系の場合はきちんとremove()しよう。
 #### コメント
 GCが走る際に実行されるメソッド。
 そもそも知らなくていいので問題ない。
+
+
+---
+
+[続く→](http://uryyyyyyy.github.io/slides/effective_java_3.html)

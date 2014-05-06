@@ -116,3 +116,8 @@ List<Test> list = new ArrayList<Test>();
 ```
 
 クラスの仕様として定義したいのであればComparableの実装はするべきです。
+
+
+---
+
+[続く→](http://uryyyyyyy.github.io/slides/effective_java_4.html)
