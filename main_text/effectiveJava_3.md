@@ -81,6 +81,9 @@ super.clone()とか、自分の持つフィールド変数に対してclone()す
 
 - 一方でshallowCopyは、コピー対象の中身は参照だけ渡す。
 
+![alt text](img/deep_shallow.gif)
+
+by http://learningwithdeepak.blogspot.jp/2012/11/difference-between-shallow-copy-deep.html
 
 ---
 
