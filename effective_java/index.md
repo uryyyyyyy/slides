@@ -7,7 +7,7 @@
 
 
   [1]: http://1
-  [2]: http://2
+  [2]: chapter2.html
   [3]: http://3
   [4]: http://4
   [5]: http://5
