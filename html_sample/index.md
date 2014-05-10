@@ -1,7 +1,3 @@
-# 目次
-
-- いつか作る
-- やっぱ作らないかもしれない。
 
 ---
 
@@ -18,7 +14,7 @@
 
 ```java:sample.java
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
 		try{
 			final long startTime = System.currentTimeMillis();
 
@@ -68,13 +64,13 @@ if you use one sentence, like this `int main(void)` dayo-.
 ### ガゾウダヨー
 
 #### ミクダヨー
-![Alt Text](img/miku.png)
+![Alt Text](../img/miku.png)
 
 ## link
 
 [ﾘﾝｸﾀﾞﾖｰ](https://github.com/uryyyyyyy)
 
-[index.md](http://uryyyyyyy.github.io/slides/main_text/index.md)
+[index.md](index.md)
 
 ---
 
