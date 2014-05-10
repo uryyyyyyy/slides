@@ -157,9 +157,9 @@ blockquote {
   color: #93a1a1; }
 
 code {
-  margin: 0 2px;
-  padding: 0 5px;
+  margin: 0 2px !important;
+  padding: 0 5px !important;
   white-space: nowrap;
   border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
+  background-color: #1a1a1a;
   border-radius: 3px; }}
