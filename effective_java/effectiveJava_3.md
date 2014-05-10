@@ -76,7 +76,7 @@ super.clone()とか、自分の持つフィールド変数に対してclone()す
 
 - 一方でshallowCopyは、コピー対象の中身は参照だけ渡す。
 
-![alt text](img/deep_shallow.gif)
+![alt text](../img/deep_shallow.gif)
 
 by http://learningwithdeepak.blogspot.jp/2012/11/difference-between-shallow-copy-deep.html
 
@@ -115,4 +115,4 @@ List<Test> list = new ArrayList<Test>();
 
 ---
 
-[続く→](http://uryyyyyyy.github.io/slides/effective_java_4.html)
+[続く→](chapter4.html)
