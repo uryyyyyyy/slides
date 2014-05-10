@@ -44,7 +44,7 @@
 
 ---
 
-具体的な使い方
+## 具体的な使い方
 
  1. 簡単なメモ（各種Editor)
  2. スライドの本文（reveal.js）
@@ -131,7 +131,7 @@ Writeは買ってみたものの、日本語入力に難があったり、同期
 --
 
 ### octpress
-ブログを簡単に作れます。僕のブログも今はこれで書いています。
+ブログ(静的html)を簡単に作れます。[僕のブログ](http://uryyyyyyy.github.io/)も今はこれで書いています。
 
 WordPressをブログに特化したものと思ってもらえば近いかと。
 
@@ -162,4 +162,4 @@ Readmeを書くときに便利です。
 今回のスライドの中身は[こちら][12]
 
   [11]: http://www.lifehacker.jp/images/2013/06/130611Markdown1.jpg
-  [12]: http://uryyyyyyy.github.io/slides/main_text/markdown.md
+  [12]: index.md
