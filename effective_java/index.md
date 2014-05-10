@@ -6,9 +6,9 @@
  - [第6章][6]
 
 
-  [1]: http://1
+  [1]: chapter1.html
   [2]: chapter2.html
-  [3]: http://3
-  [4]: http://4
-  [5]: http://5
-  [6]: http://6
+  [3]: chapter3.html
+  [4]: chapter4.html
+  [5]: chapter5.html
+  [6]: chapter6.html
