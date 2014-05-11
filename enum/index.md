@@ -1,12 +1,39 @@
 
 ## enumのキホン
 
+
+ - 何が嬉しいのか？
  - enumの子はenum
  - enumは**ほぼ**文字列
  - static finalなインスタンス
- - 値を限定できる。（null許容）
  - EnumSetとは
  - EnumMapとは
+
+---
+
+## 何が嬉しいのか？
+
+enumを使うと、あるグループで列挙される値を限定できます。
+
+例えば、
+```java
+public enum Fruits {
+	        Apple,
+	        Orange,
+	        Peach;
+    }
+```
+
+なら、この三種類以外はFruitsと認めません。
+
+限定しないと、
+
+- 「俺はスイカは果物でいいと思う」
+- 「いちごは果物じゃないと聞いたけど」
+
+なんて個々人で好きなように定義してしまい、収集がつかなくなってしまうためです。
+
+（※ただし、nullが入らないようにできないのがJavaの残念なところ。）
 
 ---
 
@@ -17,42 +44,45 @@ public enum SampleEnum {
 	        Item1,
 	        Item2;
     }
-
 ```
-ここで定義されたitem1とかって、
-enumの要素みたいに思ってませんでしたか？
+ここで定義されたitem1らは、
+SampleEnumのインスタンスです。
 
-実はこいつらもenum型（ここではSampleEnum型）です。だからこんなこともできる。
+型が同じだから、例えばこんなこともできる。
 
 ```java
-
     System.out.println(SampleEnum.Item1.Item2.Item1.Item1);
 ```
 
-（eclipseさんに注意されますが特に問題ないはず。**まぁ、こんな書き方する人はいないでしょうが**）
+（eclipseさんに注意されますが特に問題ないはず。まぁ、こんな書き方する人はいないでしょうが。。）
 
 --
 
 また、こんなこともできます。
 
 ```java
-
     public enum SampleEnum {
-                //enum型のインスタンスを羅列
+            //enum型のインスタンスを羅列
 	        Item1(1),
 	        Item2(2);
 
-               //SampleEnumのフィールド変数
+            //SampleEnumのフィールド変数
 	        public final int number;
 
-                //コンストラクタ
+            //コンストラクタ
 	        private SampleEnum (int number) {
 	            this.number = number;
 	          }
     }
 
 ```
-これは、Item1のインスタンスを作るときに、引数である１がコンストラクタに入る形です。フィールド変数を増やすことももちろん可能です。
+これは、Item1のインスタンスを作るときに、
+引数である１がコンストラクタに入って、
+フィールド変数に格納される形です。
+Item1もItem2もそれぞれ別のフィールド変数を持ちます。
+
+フィールド変数を増やすことももちろん可能です。
+`item1(1, "1dayo")`みたいな。
 
 
 ---
@@ -60,52 +90,84 @@ enumの要素みたいに思ってませんでしたか？
 ## enumは**ほぼ**文字列
 
 ```java
-
-    System.out.println(CheckEnum.OK);
-    System.out.println(CheckEnum.OK.toString());
-
+    System.out.println(CheckEnum.Item1);
+    System.out.println(CheckEnum.Item1.toString());
 ```
-これらは同じ値を指します。
+これらは同じ値（Item1）を指します。
 型は違いますが、内部的には文字列への参照を持ってるんだと思います。
 
-ちなみに、Stringでも同じ文字列は同じ領域を参照しますが、enumも実体は一つなので非常に省エネです。
-
-
+ちなみに、Stringは同じ文字列は同じ領域を参照するようにコンパイルされますが、
+enumも実体は一つなので非常に省エネです。
 
 
 ---
 
 ## static finalなインスタンス
 
-enumは実行時に即座に生成され、またインスタンスは増減しないし不変です。
+enumは実行時に即座に生成され、
+またインスタンスの数は増減しません。
 
-以降は同じ実体への参照が使われていくだけになります。
+実行中は同じ実体への参照が使われていくだけになります。
 
 ```java
-
     public enum SampleEnum {
-	        JPY("￥", 1.08),
+	     JPY("￥", 1.08),
 		 USD("＄", 0.00);
 	        
-	        public final String mark;
-	        public final BigDecimal taxRate;
+	     public final String mark;
+	     public final BigDecimal taxRate;
 	        
-	        private CheckEnum (String mark, double taxRate) {
+	     private CheckEnum (String mark, double taxRate) {
 	            this.rate = BigDecimal.valueOf(taxRate);
 	            this.mark = mark;
-	          }
+	     }
     }
-
 ```
 
-この例では、実行時にコンストラクタが呼ばれ、JPY USDを生成します。
-その結果、フィールド変数numberをもったSampleEnum型のインスタンスが2つ生成されるわけです。
+この例では、実行時にコンストラクタが呼ばれ、JPY, USDを生成します。
+繰り返しですが、その結果、フィールド変数をもった`SampleEnum`型のインスタンスが2つ生成されるわけです。
 
 **※ただしフィールド変数自体は、finalを付けないと当然可変になってしまいます**
 
 ---
 
-### 使い方
+## EnumSetとは
+
+setをEnumで扱いやすいように実装したもの。
+
+setにはないいろんな便利メソッドが定義されている。
+
+例：
+```java
+enum Flag { FLAG0, FLAG1, FLAG2, FLAG3 }
+
+		EnumSet<Flag> flag = EnumSet.of(FLAG0, FLAG1, FLAG3);
+		if (flag.contains(FLAG0)) {
+			System.out.println("フラグ0が立っている");
+		}
+```
+
+EnumでSetを使いたいときはHashSetなどより
+実行効率がよく、メソッドが追加されていて便利なようです。
+
+---
+
+## EnumMapとは
+
+EnumをキーにしたMap。HashMapより実行効率が良い。
+<small>（列挙子の個数が固定なので、序数を使った配列で実装されている）</small>
+
+```java
+Map<Flag, String> map = new EnumMap<Flag, String>(Flag.class);
+	map.put(FLAG0, "000");
+	...
+	map.get(FLAG0); //"000"
+```
+
+---
+
+
+### 使い方の例
 
  - 特定のパターンだけ列挙したい
  - 過去の実装でintがあるけどなんとかenumにしたい
@@ -116,79 +178,91 @@ enumは実行時に即座に生成され、またインスタンスは増減し�
 
 例えば、
 
- - 日付系（1~12月、 干支）
+ - 日付系（1~12月、 干支、 曜日）
  - 金額系（￥, ＄, €）
  - フラグ系（○○区分、 ○○flag）
 
 などなど。
 
 
-
+例：
 ```java
-
-    public enum SampleEnum {
-	        JPY("￥", 1.08),
+    public enum Currency {
+	     JPY("￥", 1.08),
 		 USD("＄", 0.00);
 	        
-	        public final String mark;
-	        public final BigDecimal taxRate;
+	     public final String mark;
+	     public final BigDecimal taxRate;
 	        
-	        private CheckEnum (String mark, double taxRate) {
+	     private CheckEnum (String mark, double taxRate) {
 	            this.rate = BigDecimal.valueOf(taxRate);
 	            this.mark = mark;
-	          }
+	     }
     }
 
+```
+
+```java
+    System.out.println(Currency.JPY.mark + (price * Currency.JPY.rate)
 ```
 
 ---
 
 ## 過去の実装でintがあるけどなんとかenumにしたい
 
-主に区分とかでしょうか。
+主に区分とかFlagでしょうか。
 
 昔のコード
 
 ```java
-
 public static final int CALC_KUBUN_NORMAL = 1;
 public static final int CALC_KUBUN_NEW_NORMAL = 2;
 public static final int CALC_KUBUN_2014_NORMAL = 3;
-
-
 ```
 
 みたいな。（例が良くないですかね。。。）
 
 --
 
+上記のをEnumに改良したVersion
+
 ```java
+   public enum CheckEnum {
+    	Normal(1),
+    	NewNormal(2),
+    	Normal2014(3);
 
-    public enum CalcDivision {
-	        Normal(1);
-                NewNormal(2);
-                Normal2014(3);
-	        
-	        //CalcDivisionのフィールド変数
-	        public final int divionNum;
+    	//フィールド変数
+    	public final int kubunInt;
 
-                //コンストラクタ
-	        private CalcDivision (int divionNum) {
-	            this.divionNum = divionNum;
-	          }
+    	private CheckEnum (int kubunInt) {
+    		this.kubunInt = kubunInt;
+    	}
 
-    public static CalcDivision getEnum(int divionNum) {
-	 
-	            // enum型全てを取得しループします。
-	            for(CalcDivision div : values()) {
-	                // 引数intとenum型の文字列部分を比較します。
-	                if (divionNum == div.divionNum ){
-	                    return div;
-	                }
-	            }
-    //null帰ってきた場合の処理をLogic部で忘れないこと。
-	            return null;
-	        }
+    	//昔のIntからEnumを取ってくるときに使うMap。実行時に生成される。
+    	private static final Map<Integer, CheckEnum> checkMap = init();
+    	private static Map<Integer, CheckEnum> init() {
+    		Map<Integer, CheckEnum> init = new HashMap<Integer, CheckEnum>();
+    		init.put(CheckEnum.Normal.kubunInt, CheckEnum.Normal);
+    		init.put(CheckEnum.NewNormal.kubunInt, CheckEnum.NewNormal);
+    		init.put(CheckEnum.Normal2014.kubunInt, CheckEnum.Normal2014);
+    		return init;
+    	}
+
+    	//これでintでEnumが釣れる
+    	public static CheckEnum getEnum(int kubunInt) {
+    		return checkMap.get(kubunInt);
+    	}
     }
 
+}
+```
+
+使い方：
+```java
+        //Enumからintへの変換
+        int i = CheckEnum.NewNormal.kubunInt;
+        
+        //intからEnumへの変換
+        CheckEnum.getEnum(i);
 ```
