@@ -167,14 +167,14 @@ Map<Flag, String> map = new EnumMap<Flag, String>(Flag.class);
 ---
 
 
-### 使い方の例
+## 使い方の例
 
- - 特定のパターンだけ列挙したい
+ - 一般的なパターン
  - 過去の実装でintがあるけどなんとかenumにしたい
 
 ---
 
-## 特定のパターンだけ列挙したい
+## 一般的なパターン
 
 例えば、
 
@@ -202,8 +202,10 @@ Map<Flag, String> map = new EnumMap<Flag, String>(Flag.class);
 
 ```
 
+使い方：
 ```java
     System.out.println(Currency.JPY.mark + (price * Currency.JPY.rate)
+    //\108
 ```
 
 ---
