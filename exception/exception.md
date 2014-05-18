@@ -1,16 +1,12 @@
 
 ## アジェンダ
 
-* 例外とは
+* 例外の種類
 * 実行時例外
 * 検査例外
 * 使い方
 
 ---
-
-## 例外とは
-
---
 
 ### 例外の種類
 
@@ -84,28 +80,23 @@ Errorは無視。回復可能だろうと考えるものは、チェック例外
 
 ---
 
+### 適切な例外にして返す。
+メソッド内で何をやっているかに興味はなく、そのメソッドを呼び出して想定される例外を投げる。
 
-### 標準例外
-共通な言語を使いたい
-
----
-
-### 上位例外
-メソッドないで何をやっているかに興味はなく、そのメソッドを呼び出して想定される例外を投げる。
-
+例：
 ```java
-void getFromList(int index){
+String get(int index){
 	try{
 	//
-	} catch (IndexOutOfBoundsException e) {
-		throw new NotFoundInListException("Reason");
+	} catch (NoSuchElementsException e) {
+		throw new IndexOutOfBoundsException("Reason");
 	} 
 }
 
 ```
 
 このメソッドだったら、そのindexの場所に値が入ってるかを知りたいので、
-IndexがOutかどうかはどうでもいい。
+「要素がない」、ではなくて「そのIndexは範囲外」の方が意味が通っている。。
 
 ---
 
@@ -123,7 +114,7 @@ IndexがOutかどうかはどうでもいい。
 
 コンストラクタに入れておくと強制できる。
 
-SampleException.java
+`SampleException.java`
 ```java
 public class SampleException extends Exception{
 	private static final long serialVersionUID = -9029774938234791120L;
@@ -140,7 +131,7 @@ public class SampleException extends Exception{
 }
 ```
 
-Main.java
+`Main.java`
 ```java
 public static void main(String[] args) {
 		try {
@@ -154,10 +145,12 @@ public static void main(String[] args) {
 
 --
 
-こうすると、スタックトレースでもprintlnでも`Error dayo-`が出力されます。
+この場合、スタックトレースでもprintlnでも`Error dayo-`が出力されます。
 
-このExceptionはコンストラクタに文字列を強制しているので、呼び出し側へErrorMsgの記述を強制できます。
+このSampleExceptionはコンストラクタに文字列の引数を強制しているので、呼び出し側は
+必ずErrorMsgの記述をしなければいけない。
 
+標準の例外でももちろんメッセージや変数の値は添えるておくべき
 ---
 
 ### エラーアトミック性に努める。
@@ -189,8 +182,8 @@ public static void main(String[] args) {
 - guavaのCheckNotNull()
 - lombokの@NotNull
 
-などもあります。
+などもあります。**（詳しくはググれ）**
 
-詳しくはググればいいのですが、これらは例外の検知というより、「当然この値だよね」というドキュメントの機能を果たします。
+これらは例外の検知というより、「当然この値だよね」というドキュメントの機能を果たします。
 
 
