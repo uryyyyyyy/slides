@@ -14,7 +14,7 @@
 
 ### 例外の種類
 
-![alt][/types.jpg]
+![alt][/types.png]
 
 Errorは無視していいです。（自分で実装する機会があるとは思えないから。）
 
@@ -82,10 +82,13 @@ Errorは無視。回復可能だろうと考えるものは、チェック例外
 
 逆に復旧できない例外については、処理を強制されてもどうしようもないので、無視できる実行時例外に流す。
 
+---
 
 
 ### 標準例外
 共通な言語を使いたい
+
+---
 
 ### 上位例外
 メソッドないで何をやっているかに興味はなく、そのメソッドを呼び出して想定される例外を投げる。
@@ -120,7 +123,8 @@ IndexがOutかどうかはどうでもいい。
 
 コンストラクタに入れておくと強制できる。
 
-```java:SampleException.java
+SampleException.java
+```java
 public class SampleException extends Exception{
 	private static final long serialVersionUID = -9029774938234791120L;
 	private final String msg;
@@ -136,8 +140,8 @@ public class SampleException extends Exception{
 }
 ```
 
-
-```java:Main.java
+Main.java
+```java
 public static void main(String[] args) {
 		try {
 			throw new SampleException("Error dayo-");
@@ -147,6 +151,8 @@ public static void main(String[] args) {
 		}
 	}
 ```
+
+--
 
 こうすると、スタックトレースでもprintlnでも`Error dayo-`が出力されます。
 
@@ -182,6 +188,7 @@ public static void main(String[] args) {
 
 - guavaのCheckNotNull()
 - lombokの@NotNull
+
 などもあります。
 
 詳しくはググればいいのですが、これらは例外の検知というより、「当然この値だよね」というドキュメントの機能を果たします。
