@@ -164,13 +164,18 @@ code {
   
 * + table {
   border-style:solid!important;
-  border-color:#3F3F3F!important;
+  border-color:#13daec!important;
 }
 
 * + table th, * + table td {
   border-style:solid!important;
   border-width:1px!important;
   border-color:#3F3F3F!important;
+}
+
+* + table th {
+  border-style:solid!important;
+  border-color:#13daec!important;
 }
 
 * + table th[align="left"], * + table td[align="left"] {
