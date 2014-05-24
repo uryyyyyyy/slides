@@ -162,20 +162,17 @@ code {
   background-color: #3F3F3F;
   border-radius: 10px; }}
   
-* + table {
-  border-style:solid!important;
-  border-color:#13daec!important;
+* + table{
+border-collapse: collapse;
+border-right: 1px solid #999 !important;
 }
-
-* + table th, * + table td {
-  border-style:solid!important;
-  border-width:1px!important;
-  border-color:#3F3F3F!important;
+* + table th{
+border-left: 5px solid #ff6633 !important; 
+border-top: 1px solid #fff !important;
 }
-
-* + table th {
-  border-style:solid!important;
-  border-color:#13daec!important;
+* + table td{
+border-bottom: 1px solid #999 !important;
+border-left: 1px solid #999 !important;
 }
 
 * + table th[align="left"], * + table td[align="left"] {
