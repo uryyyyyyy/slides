@@ -163,20 +163,20 @@ code {
   border-radius: 10px; }}
   
 * + table {
-  border-style:solid;
+  border-style:solid!important;
   border-width:1px;
   border-color:#e7e3e7;
 }
 
 * + table th, * + table td {
-  border-style:dashed;
+  border-style:dashed!important;
   border-width:1px;
   border-color:#e7e3e7;
   padding: 10px;
 }
 
 * + table th {
-  border-style:solid;
+  border-style:solid!important;
   font-weight:bold;
 }
 
