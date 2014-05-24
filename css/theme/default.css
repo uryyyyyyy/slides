@@ -159,18 +159,18 @@ blockquote {
 code {
   margin: 0 2px !important;
   padding: 0 5px !important;
-  background-color: #1a1a1a;
+  background-color: #3F3F3F;
   border-radius: 10px; }}
   
 * + table {
   border-style:solid!important;
-  border-color:#13daec!important;
+  border-color:#3F3F3F!important;
 }
 
 * + table th, * + table td {
   border-style:solid!important;
   border-width:1px!important;
-  border-color:#13daec!important;
+  border-color:#3F3F3F!important;
 }
 
 * + table th[align="left"], * + table td[align="left"] {
