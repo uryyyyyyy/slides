@@ -164,13 +164,13 @@ code {
   
 * + table {
   border-style:solid!important;
-  border-width:1px;
+  border-width:1px!important;
   border-color:#e7e3e7;
 }
 
 * + table th, * + table td {
   border-style:dashed!important;
-  border-width:1px;
+  border-width:1px!important;
   border-color:#e7e3e7;
   padding: 10px;
 }
