@@ -123,6 +123,8 @@ Keyのsort順に並べたい場合はこれを使うとよいでしょう。
 
 基本的にはMapと同じ（MapのKeyも一意なのでSetと同じになる。）
 
+---
+
 ### 参考文献
 
 図はすべて[PerfectJava](http://www.amazon.co.jp/%E3%83%91%E3%83%BC%E3%83%95%E3%82%A7%E3%82%AF%E3%83%88Java-PERFECT-SERIES/dp/4774139904/ref=pd_sxp_f_pt)からお借りしました。
