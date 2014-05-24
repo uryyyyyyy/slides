@@ -2,3 +2,5 @@ slides
 ======
 
 HTML slides
+
+template
