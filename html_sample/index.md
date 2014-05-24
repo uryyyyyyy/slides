@@ -43,14 +43,14 @@ if you use one sentence, like this `int main(void)` dayo-.
 
 ## table
 
-| Left align | Right align | Center align 
-            |:-----------|------------:|:------------:|
-            | This       |        This |     This     
-            | column     |      column |    column    |
-            | will       |        will |     will     |
-            | be         |          be |      be      |
-            | left       |       right |    center    |
-            | aligned    |     aligned |   aligned    |
+| Left align | Right align | Center align |
+|:-----------|------------:|:------------:|
+| This       |        This |     This     |
+| column     |      column |    column    |
+| will       |        will |     will     |
+| be         |          be |      be      |
+| left       |       right |    center    |
+| aligned    |     aligned |   aligned    |
 
 ## escape
 
