@@ -84,8 +84,6 @@ class streamTest2{
 
 ## Fileへ文字列を書き込む場合
 
-
-
 ```java
 class streamTest4{
   public static void main(String args[]){
@@ -133,8 +131,6 @@ class streamTest4{
 
 * 文字のEncodeが標準でない場合
 * socket経由など、いきなり文字列Streamにできない場合。
-* 
-* 
 
 ---
 
@@ -304,7 +300,5 @@ Fileから文字列を取得
 
 * PerfectJava
 * http://www.javadrive.jp/start/stream/
-* 
-* 
 
 
