@@ -1,0 +1,77 @@
+### Collection
+
+Collectionとは？
+
+> コレクションは、その要素であるオブジェクトのグループを表します。
+
+[Collection-JavaAPI](http://docs.oracle.com/javase/jp/6/api/index.html?java/util/Collection.html)
+
+どんなメソッドを持ってるべきか考えてみる
+
+![alt](./kankore.jpg)
+
+> http://www.dmm.com/netgame_s/kancolle/gallery/
+
+--
+
+### Collectionのメソッド
+
+* add(E e) //要素の追加
+* contains(Object o) //要素の存在確認
+* isEmpty() //空かどうか
+* remove(Object o) //要素の削除
+* clear() //要素の全削除
+* size() //リストの要素数確認
+* toArray() //配列に直す
+* iterator() //iteratorを返す。
+
+**Q** : 
+
+- containsやremoveはどうやって対象のオブジェクトを探してくるの？
+- Integer.MaxValue以上の要素をaddしたらどうなるの？
+
+**Tips** : 
+
+- Itarate中に要素を追加したり削除したりするとErrorになるよ。
+- addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返してね。
+
+--
+
+どこか良くないところはありますか？
+
+<textarea name="example" cols="100" rows="10">
+memo
+</textarea>
+
+---
+
+### 汎用クラス Collections
+
+便利メソッドの詰め合わせ。
+
+例えば、
+
+* EMPTY_SET(MAPやLISTも)
+	- 
+* sort
+	- O(n log(n)) のパフォーマンス
+* reverse shuffle
+	- O(n)
+
+### sortとsearch
+
+Collectionsクラスに以下のメソッドが用意されている。。
+
+* sort(list, [options])
+* binarySearch(list, target, Comparator)
+
+sortしてからbinarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
+
+
+---
+
+どこか良くないところはありますか？
+
+<textarea name="example" cols="100" rows="10">
+memo
+</textarea>

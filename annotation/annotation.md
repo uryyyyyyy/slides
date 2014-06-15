@@ -61,6 +61,24 @@ Interface
 
 ---
 
+## JavaDoc
+
+* @author
+* @version
+* @deprecated
+* @return
+* @params
+* 
+* 
+* 
+
+
+
+
+
+
+---
+
 ### 35 命名パターンよりアノテー ションをえらぶ。
 
 #### 理由

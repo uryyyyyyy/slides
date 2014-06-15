@@ -4,19 +4,27 @@
 ## なぜテスト駆動開発か。
 
 なぜテストを尽くさないのか。
+gazou
 
-## テストを行うか行わないか
-進研ゼミ方式
-テストを怠ったAさん
-「普段の業務で忙しくてテストしている時間がなくて、
-　そんで後回しにしていたら前よりもヒドイものが出来てしまった。
-　おまけに女の子にも『もっとテストしとけばよかった』とふられました」
+---
 
+テストをしなかった場合
+忙しい、とテストを怠ったAさん
+「普段の業務で忙しくてテストしている時間がなくて後回しにしていたら前よりもヒドイものが出来てしまった。
+不具合の対応に追われて新機能が作れない。不具合の特定にも時間がかかる
+技術的負債がたまり、周りには触れてはいけないコードばかりで怖くて動けません
+※あくまで個人の感想で個人差があります
+
+---
+
+テストをした場合
 テストを頑張ったBさん
-「思い切ってTDDにチャレンジしたおかげで実装の効率も上がったし、
-　テストの点数も上がったし上司にも褒められるし、スキルも上がっていますし、
-　仕事でもレギュラーに選ばれるし、さらには彼女も出来ました。」 
+「思い切ってTDDにチャレンジしたおかげでテストの点数も上がって上司にも褒められるし、実装スキルも上がって新規案件でもレギュラーに選ばれるし、憧れの先輩と付き合うことも出来ました。
+※あくまで個人の感想で個人差があります
 
+---
+
+冗談はこのくらいにして
 
 ### そもそもの目的
 
@@ -26,6 +34,7 @@
 
 これらを必然的に満たしてくれるのがTDD
 
+---
 
 ## 当面の目標。
 
@@ -35,6 +44,8 @@
 - 実装後、修正後にテストを見せることで、周囲の人の評価アップ
 - 転職する際もテストの経験は活きるはず。
 
+---
+
 ### 実業務の想定。
 - 設計に時間をかけられるようになる。
 - 全てにテストを書けとは言わない
@@ -42,6 +53,7 @@
 - コメントを添えるよりもテストで示したほうがわかりやすい。
 - テストする必要がないようなシンプルな記述を心がけるようになる。
 
+---
 
 ## 目指すコードのカタチ
 
@@ -52,6 +64,7 @@
 - 関数的２（再利用できる小さなメソッドを作る）
 - 仕様書、動作説明書となる
 
+---
 
 ## テスト駆動開発のサイクル
 - 設計する
@@ -61,6 +74,7 @@
 
 このプロセスを通じて保守性の高いコードを身につける。
 
+---
 
 ## もしかして→”めんどくさい”?
 - 工数が増えては意味がない。長期的に考えて楽を目指す。
@@ -68,6 +82,8 @@
 - 評価- 保守における単純作業は自動化してしまおう。
 - 慣れないのは、プログラマ脳になりきれていないから。
 - 汚い- 地雷だらけのコードの中で仕事したくない。
+
+TDDは保守などの単純作業を知的労働に変える思想なのだ。
 
 ---
 
@@ -88,8 +104,24 @@
 - TearDown
 →次のテストに影響がないか確認。
  
+---
 
-真似たほうが早いでしょう
+よく使われる単語
+単語リスト
+SUT → System Under Test。自分が今テストしているもの
+Mock → 暫定的に用意しておく仮オブジェクト
+Stab → テスト用に、「こう動いて欲しい」と記述するオブジェクト
+Coverage → 網羅率。コードやメソッド（C0・C1）の網羅の割合
+TestSuite → テストのグループ。（今回は割愛）
+※StubとMockの違いは実際には理解しきれていませんが、Test特化かそうでもないかの違いっぽいです。
+
+
+---
+
+
+習うより慣れろ
+Calculator.java
+
 - Sample1
 ```java
 
@@ -98,6 +130,12 @@
         return x * y;
     }
 ```
+このプロダクトコードに対して
+
+---
+
+習うより慣れろ
+CalculatorTest.java
 
 - Test1
 ```java
@@ -124,19 +162,37 @@
     }
 ```
 
-ひたすらにこのカタチを真似ましょう。
+テストコードはこのようなカタチ。 
+まずはこれを真似るところから。
+
+---
+
+
 
 次に例外を。
 
+習うより慣れろ２
+Calculator.java
 ```java
-    public float divide(int x, int y) {
+          public class Calculator{
+
+            public float divide(int x, int y) {
         if (y == 0) throw new IllegalArgumentException("divide by zero.");
         return (float) x / (float) y;
     }
+          }
+```
+        
+今度は例外を
 
 
-@Test
-    public void divideで3と2の除算結果が取得できる() {
+習うより慣れろ２
+CalculatorTest.java
+
+```java
+          public class CalculatorTest{
+    @Test
+    public void divide_3_2Test() {
         Calculator calc = new Calculator();
         float expected = 1.5f;
         float actual = calc.divide(3, 2);
@@ -144,15 +200,13 @@
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void divideで5と0のときIllegalArgumentExceptionを送出する() {
+    public void divide_5_0Test() {
         Calculator calc = new Calculator();
         calc.divide(5, 0);
     }
 ```
 
-@Testについてるexpectedがメソッドの期待値です。
-
-テストに相応しい値の探し方（C0や境界値など）はみんな理解してると思うので割愛）
+@Testについてる(expected = ??)がTestの期待値です。
 
 ---
 
@@ -164,9 +218,19 @@
 - 関数的である２→オブジェクトが状態を持たない。
 - 依存関係が少ない。簡潔である。
 
+※ここで言う「良い」はテスタブルなコードという意味合いで使っています。
+
 --
 
-### 例えばこんなのは辛いよね。
+### テストが難しいメソッド
+例えばこんなのは辛いよね。
+返り値がvoid->何を比較すればいい？
+オブジェクトが状態を持つ→いつからいつの変化を測ればいい？
+DBや複数のオブジェクトに依存している→エラーの原因はどこ？SetUpがめんどくさい
+日付・乱数などが入り込んでる。→テストの度に結果が違う
+例えば次のテストは大変そうだ。
+
+---
 
 - void
 
@@ -193,11 +257,12 @@ assertThat( sut . get(Ð) ， is( "Hello" ));
 
 ---
 
-### テストは明確に
-- ドキュメントの代わりとして
-- テスト失敗時に問題を特定しやすいこと
-- 可読性の低いテストは避け、何をしてるかわかりやすくすること。
-- 何がゴールなのかめいかくにする（×正しく出力される）
+### Testは簡潔に。
+Test自体は目的じゃない
+仕様書の代わりとして使える
+テスト失敗時に問題を特定しやすくする
+何がゴールなのか明確にする（×「正しく」出力される）
+Test自体の可読性が悪かったら、何のTestかわからない
 
 ---
 
@@ -213,6 +278,8 @@ assertThat( sut . get(Ð) ， is( "Hello" ));
 ＠AfterClass→同様 
 
 --
+
+### 色々なメソッド
 
 fail→強制失敗
 MatcharAPI→ググれ
@@ -231,6 +298,11 @@ assertThatで事足りるでしょう。
 
 
 ---
+
+## Date型のTest
+よく使いそうなので先に作ってしまいましょう。
+IsDate.java
+
 
 日付型
 ```java
@@ -276,156 +348,141 @@ return new IsDate(yyyy, mm, dd) ;
 次にこんな感じにしたい
 `assertThat(hogeDate,  is(dateOf(2612, 1, 12)));`
 
+dateOfのところが先ほど作ったメソッドです。インスタンスを作って、matchsを元に比較してdescribeToでエラーを吐きます。
 
 ---
 
-### テストの記述- 構造化の仕方。
-機能ベースでまとめていくプロダクトコードと違い、
-初期化が一般化できるかどうかで記述するのがテストコード。
-初期状態によってインナークラスを作って分けていくなど（p97）
-コンストラクタメソッドも別クラスとして設けておく
-
-- テストランナー
+Testを書くときに
 バグが起きやすいところ
-- 境界値
-- ２つまでの組み合わせ（PairWise）
-全ての組み合わせ、パターンを実行することは不可能
-テストケースの選択が品質を左右する。 
-
---
-
-### ※SlowTest問題
-毎回初期化してテストをするのが一番独立していて有効なのだが、それだと時間がかかるorマシンスペックを要求される。そのため、一度作ったフィクスチャを共有することがある。（もちろんテストの独立性は犠牲になる。） 
-
-テストは一般にそれぞれ独立していて、
-初期化処理も個別に行うのが望ましい。
-が、複数抱えると途端にパンクする。
-から個別に分けていくことが必要らしいのだけど、
-現状は必要性を感じないので省略。
-@ignoreだけ覚えておけばいいのでは。
+境界値
+変数の組み合わせのうちの２つまででの不具合（PairWise）
+※SlowTest問題
+毎回初期化してテストをするのが一番独立していて有効なのだが、それだと時間がかかるorマシンスペックを要求される。そのため、一度作ったフィクスチャを共有することがある。（もちろんテストの独立性は犠牲になる。） テストケースの選択が品質を左右する。
 
 ---
 
-### 初期値のセットアップがめんどくさいとき。
+応用編
 
-初期値のセットアップ、
-ものによっては複雑なオブジェクトを組むことになります。
-その時には外部ファイルに記述するか、
-Helperクラスを使いましょう。
+---
+
+### 初期値のセットアップ
+メソッドによっては複雑なオブジェクトが入力値に入ることになります。 その値は一つ一つset()などするのは大変だし見にくい。メインの処理が埋もれてしまう など問題があります。
+その時には、外部ファイルに記述するかHelperクラスを使いましょう。
+
+---
 
 ```java
+初期値のセットアップ
+BookStoreTest .java
+
 public class BookStoreTest {
-@Test
-public void getTotalPrice() throws Exception {
-/ / SetUp
-BookStore sut = new BookStore ( );
-Book book = BookHelper.createNewBook( );
-sut .addToCart( book, 1);
-/ / Exercise & Verify
-assertThat ( sut.getTotalPrice( ),  is (4500)); 
-
-
-public class BookStoreTestHelper {
-pub lic static createNewBook() {
-Book book = new Book () ;
-book. setTi tle( "Refactoring") ;
-book. setPrice(4500) ;
-Author author = new Author( ) ;
-author. setFirstName( "Martin");
-author. setLastName(" Fowler") ;
-book. setAuthor(author) ;
-return book; 
+  @Test
+  public void getTotalPrice() throws Exception {
+    // SetUp
+    BookStore sut = new BookStore();
+    Book book = BookHelper.createNewBook();
+    sut.addToCart(book, 1);
+    // Exercise & Verify
+    assertThat (sut.getTotalPrice(), is(4500)); 
+  }
+}
 ```
 
+ここで、BookHelperのメソッドを呼んでオブジェクトを生成しています。 そのおかげでメインのTestメソッドがわかりやすくなっています。
+
 ---
 
-### パラメータ化テスト
-
-例えばこんなカタチ
+初期値のセットアップ
+BookStoreTest .java
 
 ```java
-/材
+public class BookStoreTestHelper {
+  public static createNewBook() {
+    Book book = new Book();
+    book.setTitle("Refactoring");
+    book.setPrice(4500);
+    Author author = new Author();
+    author.setFirstName("Martin");
+    author.setLastName("Fowler");
+    book.setAuthor(author);
+    return book; 
+  }
+}
+```
+        
+HelperMethodはこんなカンジで定義したりです。（オブジェクトによっては外部ファイルへの定義の方が楽そうですがここでは割愛します。）
+
+
+---
+
+### 複数データに対応したテスト
+例えばこんなメソッドがあったとします。
+
+
+```java
+//**
 * 優待会員かどうかを返す
 * @param age 年齢
-備考
-18以上の値
-18未満の値
+* 備考
+* 18以上の値
+* 18未満の値
 * @param isRegisterMailMagazine メ ールマガジンに登録 している場合にtrue
 * @param usePastMonth 前月の利用回数
 * @return 20歳以上であ り、 メールマガジンに登録 しであ り 、
-本 かつ前月の利用回数がl回以上ならtrue
+* かつ前月の利用回数がl回以上ならtrue
 */
-public static boolean isSpecialMember(
-int age, boolean isRegisterMailMagazine, int usePastMonth) {
-if ( age < 20) return false;
-if (! isRegisterMailMagazine) return false;
-if (usePastMonth < 1) return false;
-return true; 
-
+public static boolean isSpecialMember(int age,
+  boolean isRegisterMailMagazine, int usePastMonth) {
+  if ( age < 20) return false;
+  if (! isRegisterMailMagazine) return false;
+  if (usePastMonth < 1) return false;
+  return true;
+}
 ```
 
-というとき、テストを複数書くのはめんどくさい
-最低でもこんなテストケースがありそう。
+これのテストを一つずつ書くのはめんどくさいですよね。複数パターンをまとめて書きたい。
 
-キャプチャ
+---
 
-（ここで、テストケースを元に例外処理を考えるのも安全かもしれない。）
-
-```java
-public class Age {
-public final int value;
-public Age(int value) {
-if (value < 0 II 150 <= value)
-throw new IllegalArgumentException ( ) ;
-this. value = value; 
-```
-
-
-### 複数データに対応したテスト
+複数データに対応したテスト
+（先ほどの例と関係なくて恐縮ですが、わかりやすいので別例で） こんな風にパラメータを設定できます。
 
 ```java
 
-@Datapoint
 
 @RunWith(Theories. class)
 public class CalculatorTest {
 
-@DataPoint
-public static int INT_PARAM1 = 3;
-@DataPoint
-public static int INT_PARAM2 = 4;
-@DataPoint
-public static String STRING_PARAM1 = "Hello" ;
-@DataPoint
-public static String STRING_PARAM2 = "World";
-@Theory
-public void test( int intParam, String strParam)
-throws Exception {
-System.out.println(
-"テストメソッド(" + intParam + " I " + strParam + ")");
+  @DataPoint
+  public static int INT_PARAM1 = 3;
+  @DataPoint
+  public static int INT_PARAM2 = 4;
+  @DataPoint
+  public static String STRING_PARAM1 = "Hello" ;
+  @DataPoint
+  public static String STRING_PARAM2 = "World";
+  @Theory
+  public void test( int intParam, String strParam)
+  throws Exception {
+    System.out.println(
+    "テストメソッド(" + intParam + " | " + strParam + ")"); 
+  }
 }
 ```
 
-result:
-
-```java
-
-テストメソッド(3 I Hello)
-テストメソッド(3 I World)
-テストメソッド(4 I Hello)
-テストメソッド(4 I World)
-
+```
+----result(console)----
+テストメソッド(3 | Hello)
+テストメソッド(3 | World)
+テストメソッド(4 | Hello)
+テストメソッド(4 | World)
 ```
 
-void型の場合、オブジェクトが状態を持ってしまっているので、
-それを確認するようのメソッドなどを呼んであげる必要があります。
-（確認のしようがない？じゃぁそのvoid型のメソッドは無意味といういことになるよ。
-
---
-
-## テストダブル
+同じ型のパラメータはこんなふうにまとめられ、全組み合わせが実行されます。
 
 ---
+
+## テストダブル
 
 さて、これで基本は完了です。
 これで何でもいけるとおもいきや、そんな簡単なプログラムだけではありません。
@@ -442,85 +499,75 @@ void型の場合、オブジェクトが状態を持ってしまっているの�
 
 ### 内部のメソッドを呼んでいる場合
 
-例えば
+
+MethodExtractExample.java
+
 ```java
 public class MethodExtractExample {
-Date date = newDate();
-public void doSomething() {
-this. date = newDate();
-// 何らかの処理 (省略)
-Date newDate() {
-return new Date( ) ;
+  Date date = newDate();
+  
+  public void doSomething() {
+    this.date = newDate();
+    // 何らかの処理 (省略)
+  }
+
+  private Date newDate() {
+    return new Date();
+  }
+}
 ```
 
-内部のメソッドをオーバーライド（書き換え）することができます
+        
+ここでbewDate()が使われています。Test死体メソッドはこの部分の挙動は関与していないため、これでは意図した結果になるか不安が残ります。
+
+---
+
+内部のメソッドを呼んでいる場合
+MethodExtractExampleTest.java
 
 ```java
 public class MethodExtractExampleTest {
-@Test
-public void doSomethingTest ( )
-throws Exception {
-final Date current = new Date( );
-MethodExtractExample sut = new HethodExtractExample() {
-@Override
-Date newDate() {
-return current;
-sut.doSomething( );
-assertThat ( sut.date, is(samelnstance(current)))i
+  @Test
+  public void doSomethingTest() throws Exception {
+    final Date current = new Date();
+    
+    MethodExtractExample sut = new HethodExtractExample() {
+      @Override
+      Date newDate() {
+        return current;
+      }
+    }
+    sut.doSomething();
+    assertThat(sut.date, is(samelnstance(current)));
+  }
+}
 ```
 
 ---
 
-### 外部オブジェクト- メソッドを使っている場合。
+## 外部オブジェクト・メソッドを使っている場合
 
-Mock/stubオブジェクトを使う（Mockitoライブラリ使用）
-例えばこんな感じに。
+Mock/stubオブジェクトを使う（Mockitoライブラリ使用） 例えばこんな感じに。
 
 ```java
-List<String> stub = mock (List . class) ;
-when{ stub. get (0) ).thenReturn("Hello") ;
-when( stub.get( l) ) . thenReturn("World" ) ;
-when( stub. get(2) ) .thenThrow(new IndexOutOfBoundsException());
+static import ... Mock;
+...
+
+List＜String＞ stub = mock(List.class);
+when(stub.get(0)).thenReturn("Hello");
+when(stub.get(1)).thenReturn("World");
+when(stub.get(2)).thenThrow(new IndexOutOfBoundsException());
 
 //Verify
-stub.get(0) //Helloが返ってくる。
-stub.get(2); //例外が送出される
+stub.get(0); //Helloが返ってくる。
+stub.get(2); //例外が送出される。
 ```
 
----
+        
+Mockオブジェクトを使うと、そのオブジェクトがどのメソッドを呼んだら 何が返ってくるのか、というのが定義できます（実際にStringを持ってるわけではないハズ）
 
-### 省略した内容
-Spy
-DBUnit
-カバレッジ
-自動ビルド
+
+newでコンストラクタを呼んでますが、そこでnewDate()の書き換えを行っています。 ここで作られたsutのnewDate()メソッドは 元のオブジェクトと違う振る舞いを見せることができるわけです。
 
 ---
 
-オフライン勉強会で行うもの（予定）
-
-- テストコード記述の実践
-- 振る舞い駆動開発（シナリオテスト）
-cucumber- Jnario
-
-
-http://www.slideshare.net/shuji_w6e/junit-xunittestpatterns
-
----
-
-### 実務におけるTips
-→クラスを設計する際
-
-http://www.slideshare.net/shuji_w6e/junit-xunittestpatterns
-QuickJUnitで簡単にテストクラスが作れる（義務化しましょう。） 
-
-
----
-
-アノテーション対応した4
-
-ヘロク
-
-大文字プリミティブは必要か？ボクシングしてくれるのでは？
-
-１８６P
