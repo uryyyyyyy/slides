@@ -63,7 +63,7 @@ li ul
 
 ---
 
-どこか良くないところはありますか？
+Any Question?
 
 <textarea name="example" cols="50" rows="10" style="font-size:100%;">
 memo

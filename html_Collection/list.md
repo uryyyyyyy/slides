@@ -96,3 +96,10 @@ Collectionsクラスに以下のメソッドが用意されている。。
 * binarySearch(list, target, Comparator)
 
 sortしてからbinarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
+
+---
+Any Question?
+
+<textarea name="example" cols="50" rows="10" style="font-size:100%;">
+memo
+</textarea>
