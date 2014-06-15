@@ -30,7 +30,14 @@
 
 - 順番を入れ替える系はCollectionsに入っている
 
+--
+
 > List インタフェースは、iterator、add、remove、equals、および hashCode の各メソッドの規約に対して、Collection インタフェースで指定されているものに加えてさらに条項を追加します。便宜上、ほかの継承メソッドの宣言もここに含まれます。
+
+### Q
+
+* どういう意味？
+
 
 --
 
@@ -39,10 +46,10 @@
 * AbstractList // Listのスケルトン実装（RandamAccsess）
 * AbstractSequentialList // Listのスケルトン実装（Sequential）
 * ArrayList // ド定番
-* AttributeList // ggrenaiks
+* AttributeList // **ggrenaiks**
 * CopyOnWriteArrayList // 同期させたい時などに役立つ(?)
 * LinkedList // List + Deque
-* RoleList・RoleUnresolvedList // ggrenaiks
+* RoleList・RoleUnresolvedList // **ggrenaiks**
 * Stack // LIFO(Dequeで良くない？)
 * Vector // スレッドセーフなArrayList。過去の遺産
 
@@ -98,6 +105,7 @@ Collectionsクラスに以下のメソッドが用意されている。。
 sortしてからbinarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
 
 ---
+
 Any Question?
 
 <textarea name="example" cols="50" rows="10" style="font-size:100%;">
