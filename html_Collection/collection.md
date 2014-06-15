@@ -1,7 +1,5 @@
 ### Collection
 
-Collectionとは？
-
 > コレクションは、その要素であるオブジェクトのグループを表します。
 
 > [Collection-JavaAPI](http://docs.oracle.com/javase/jp/6/api/index.html?java/util/Collection.html)
@@ -20,20 +18,27 @@ Collectionとは？
 * contains(Object o) //要素の存在確認
 * isEmpty() //空かどうか
 * remove(Object o) //要素の削除
-* clear() //要素の全削除
 * size() //リストの要素数確認
 * toArray() //配列に直す
 * iterator() //iteratorを返す。
 
-**Q** : 
+#### Q
 
 - containsやremoveはどうやって対象のオブジェクトを探してくるの？
 - Integer.MaxValue以上の要素をaddしたらどうなるの？
 
-**Tips** : 
+#### Tips
 
 - Itarate中に要素を追加したり削除したりするとErrorになるよ。
 - addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返してね。
+
+--
+
+### 既知のすべての実装クラス:
+
+全ては多すぎますが、Set, List, Deque(Queue)など。
+
+![alt](./overview.jpg)
 
 ---
 
@@ -62,6 +67,12 @@ Collectionとは？
 
 どこか良くないところはありますか？
 
-<textarea name="example" cols="100" rows="10" style="font-size:large;">
+<textarea name="example" cols="50" rows="10" style="font-size:100%;">
 memo
 </textarea>
+
+---
+
+- [List](list.html)
+- [Set](set.html)
+- [Map](map.html)
