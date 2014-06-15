@@ -1,4 +1,4 @@
-### List
+## List
 
 > 順序付けられたコレクションです。シーケンスとも呼ばれます。
 
@@ -10,7 +10,9 @@
 
 > [艦これ](http://www.dmm.com/netgame_s/kancolle/gallery/)
 
-### インターフェースのメソッド
+--
+
+## インターフェースのメソッド
 
 * add(int index, E element) //要素の追加
 * get(int index) //要素の取得
@@ -20,11 +22,11 @@
 
 など、要素の順番（index）に対してアクセスする。
 
-#### Q
+### Q
 
 - indexOfの実装は？
 
-#### Tips
+### Tips
 
 - 順番を入れ替える系はCollectionsに入っている
 
@@ -32,7 +34,7 @@
 
 --
 
-### 既知のすべての実装クラス:
+## 既知のすべての実装クラス:
 
 * AbstractList // Listのスケルトン実装（RandamAccsess）
 * AbstractSequentialList // Listのスケルトン実装（Sequential）
@@ -40,48 +42,47 @@
 * AttributeList // ggrenaiks
 * CopyOnWriteArrayList // 同期させたい時などに役立つ(?)
 * LinkedList // List + Deque
-* RoleList // ggrenaiks
-* RoleUnresolvedList // ggrenaiks
+* RoleList・RoleUnresolvedList // ggrenaiks
 * Stack // LIFO(Dequeで良くない？)
 * Vector // スレッドセーフなArrayList。過去の遺産
 
-**※ggrenaiks -> ググっても出ないks**
+*※ggrenaiks -> ググっても出ないks*
 
-#### Q
+### Q
 
 - スケルトン実装って？
 - スレッドセーフな実装って？
 
 ---
 
-### ArrayList
+## ArrayList
 
 配列に並べたList。
 
 ![alt](./arrayList.png)
 
-#### Feature
+### Feature
 
 * インデックスを指定してのget/setが速い
 * 先頭からすべての順番を取っていくのが速い。
 
-#### Implement
+### Implement
 
 [ArrayList(JDK1.7_60)](./ArrayList.java)
 
 ---
 
-### LinkedList
+## LinkedList
 
 nodeで並べたList。
 
 ![alt](./linkedList.png)
 
-#### Feature
+### Feature
 
 * 要素のadd/removeが速い。
 
-#### Implement
+### Implement
 
 [LinkedList(JDK1.7_60)](./LinkedList.java)
 
@@ -95,5 +96,3 @@ Collectionsクラスに以下のメソッドが用意されている。。
 * binarySearch(list, target, Comparator)
 
 sortしてからbinarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
-
----

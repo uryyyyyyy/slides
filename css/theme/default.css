@@ -165,7 +165,7 @@ code {
 li {
   list-style-image : url(./green_arrow.png);}
   
-li ul{
+li ul li{
   list-style-image : url(./black_arrow.png);}
   
 * + table{
