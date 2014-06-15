@@ -4,13 +4,13 @@ Collectionとは？
 
 > コレクションは、その要素であるオブジェクトのグループを表します。
 
-[Collection-JavaAPI](http://docs.oracle.com/javase/jp/6/api/index.html?java/util/Collection.html)
+> [Collection-JavaAPI](http://docs.oracle.com/javase/jp/6/api/index.html?java/util/Collection.html)
 
 どんなメソッドを持ってるべきか考えてみる
 
 ![alt](./kankore.jpg)
 
-> http://www.dmm.com/netgame_s/kancolle/gallery/
+> [艦これ](http://www.dmm.com/netgame_s/kancolle/gallery/)
 
 --
 
@@ -35,43 +35,33 @@ Collectionとは？
 - Itarate中に要素を追加したり削除したりするとErrorになるよ。
 - addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返してね。
 
---
-
-どこか良くないところはありますか？
-
-<textarea name="example" cols="100" rows="10">
-memo
-</textarea>
-
 ---
 
-### 汎用クラス Collections
+### Collections
 
+ユーティリティクラス。
 便利メソッドの詰め合わせ。
 
 例えば、
 
 * EMPTY_SET(MAPやLISTも)
-	- 
+	- 空のSetなどを持ってくる。
 * sort
-	- O(n log(n)) のパフォーマンス
-* reverse shuffle
-	- O(n)
-
-### sortとsearch
-
-Collectionsクラスに以下のメソッドが用意されている。。
-
-* sort(list, [options])
-* binarySearch(list, target, Comparator)
-
-sortしてからbinarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
+	- mergesortする。 O(n log(n)) のパフォーマンス
+* binarySearch
+	- sortしてから使うと探索の効率が良くなる。 O(n) -> O(log (n))
+* reverse shuffle rotate
+	- Listの順番を入れ替える。O(n)
+* disjoint
+	- 共通の要素があるかのチェック
+* max (min)
+	- 要素の順序付けに従って、指定されたコレクションの最大の要素を返す。
 
 
 ---
 
 どこか良くないところはありますか？
 
-<textarea name="example" cols="100" rows="10">
+<textarea name="example" cols="100" rows="10" style="font-size:large;">
 memo
 </textarea>
