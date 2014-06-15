@@ -22,12 +22,12 @@
 * toArray() //配列に直す
 * iterator() //iteratorを返す。
 
-#### Q
+### Q
 
 - containsやremoveはどうやって対象のオブジェクトを探してくるの？
 - Integer.MaxValue以上の要素をaddしたらどうなるの？
 
-#### Tips
+### Tips
 
 - Itarate中に要素を追加したり削除したりするとErrorになるよ。
 - addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返してね。
@@ -46,8 +46,6 @@
 
 ユーティリティクラス。
 便利メソッドの詰め合わせ。
-
-例えば、
 
 * EMPTY_SET(MAPやLISTも)
 	- 空のSetなどを持ってくる。

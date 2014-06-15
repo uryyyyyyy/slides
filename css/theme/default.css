@@ -160,7 +160,10 @@ code {
   margin: 0 2px !important;
   padding: 0 5px !important;
   background-color: #3F3F3F;
-  border-radius: 10px; }}
+  border-radius: 10px; }
+  
+li {
+  list-style-image : url(./arrow_orange_g.gif);}
   
 * + table{
 border-collapse: collapse;
