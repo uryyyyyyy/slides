@@ -103,6 +103,10 @@ ListのAPIにこんな記述が。
 * add, remove, get, setのオーダーは？
 * Capacityの取り扱いは？
 
+--
+
+## Implement
+
 ---
 
 ## LinkedList
@@ -123,6 +127,11 @@ ListのAPIにこんな記述が。
 * add, remove, get, setのオーダーは？
 * Dequeって何？
 
+--
+
+## Implement
+
+
 ---
 
 ### sortとsearch
@@ -138,6 +147,6 @@ sortしてからbinarySearch（二分探索）すれば探索の効率が良く�
 
 Any Question?
 
-![alt](./bakanisinaide.jpg)
+![alt](./omaeha.jpg)
 
-[livedoor.blogimg.jp](./omaeha.jpg)
+> [livedoor.blogimg.jp](http://livedoor.4.blogimg.jp/chihhylove/imgs/6/f/6f0e791f.jpg)
