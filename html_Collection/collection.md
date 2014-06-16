@@ -48,7 +48,7 @@
 
 > このクラスは、コレクションに作用する、またはコレクションを返す static メソッドだけで構成されます。
 
-[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collections.html) - [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Collections.java.html)
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collections.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/Collections.java.html) - [Row(JDK1.7_60)](./Collections.java)
 
 --
 

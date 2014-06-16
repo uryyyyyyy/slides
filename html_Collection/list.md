@@ -65,7 +65,7 @@ ListのAPIにこんな記述が。
 ## Arrays
 
 > このクラスには、ソートや検索など、配列を操作するためのさまざまなメソッドがあります。また、配列をリストとして表示するための static ファクトリもあります。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) -  [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html) - [Row(JDK1.7_60)](./Arrays.java)
 
 - asList(T... a)
 	* 指定された配列に連動する固定サイズのリストを返します。
@@ -84,7 +84,7 @@ ListのAPIにこんな記述が。
 ## ArrayList
 
 > List インタフェースのサイズ変更可能な配列の実装です。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) -  [source(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html) - [Row(JDK1.7_60)](./ArrayList.java)
 
 ![alt](./arrayList.png)
 
@@ -104,12 +104,23 @@ ListのAPIにこんな記述が。
 
 ## Implement
 
+```java
+private transient Object[] elementData;
+
+public E get(int index) {
+        rangeCheck(index);
+
+        return elementData(index);
+    }
+
+```
+
 ---
 
 ## LinkedList
 
 > List および Deque インタフェースの二重リンクリスト実装です。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) - [source(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html) - [Row(JDK1.7_60)](./LinkedList.java)
 
 ![alt](./linkedList.png)
 
@@ -127,6 +138,25 @@ ListのAPIにこんな記述が。
 --
 
 ## Implement
+
+```java
+Node<E> node(int index) {
+        // assert isElementIndex(index);
+
+        if (index < (size >> 1)) {
+            Node<E> x = first;
+            for (int i = 0; i < index; i++)
+                x = x.next;
+            return x;
+        } else {
+            Node<E> x = last;
+            for (int i = size - 1; i > index; i--)
+                x = x.prev;
+            return x;
+        }
+    }
+
+```
 
 
 ---
@@ -147,3 +177,15 @@ sortしてからbinarySearch（二分探索）すれば探索の効率が良く�
 ![alt](./omaeha.jpg)
 
 > [livedoor.blogimg.jp](http://livedoor.4.blogimg.jp/chihhylove/imgs/6/f/6f0e791f.jpg)
+
+---
+
+## Reference
+
+### row source(Download)
+
+
+
+### SpecialThanks
+
+艦これ（DMM）
