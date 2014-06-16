@@ -48,14 +48,11 @@ ListのAPIにこんな記述が。
 * AbstractList // Listのスケルトン実装（RandamAccsess）
 * AbstractSequentialList // Listのスケルトン実装（Sequential）
 * ArrayList // 定番
-* AttributeList // **ggrenaiks**
 * CopyOnWriteArrayList // 同期させたい時などに役立つ(?)
 * LinkedList // List + Deque
-* RoleList・RoleUnresolvedList // **ggrenaiks**
+* RoleList・RoleUnresolvedList・AttributeList // 誰？
 * Stack // LIFO(Dequeで良くない？)
 * Vector // スレッドセーフなArrayList。過去の遺産
-
-*※ggrenaiks -> ググっても出ないks*
 
 ### Q
 
@@ -145,7 +142,7 @@ sortしてからbinarySearch（二分探索）すれば探索の効率が良く�
 
 ---
 
-Any Question?
+## Any Question?
 
 ![alt](./omaeha.jpg)
 
