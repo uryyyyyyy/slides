@@ -2,13 +2,13 @@
 
 > コレクションは、その要素であるオブジェクトのグループを表します。
 
-> [Collection-JavaAPI](http://docs.oracle.com/javase/jp/6/api/index.html?java/util/Collection.html)
+> [Collection-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collection.html)
 
 どんなメソッドを持ってるべきか考えてみる
 
 ![alt](./kankore.jpg)
 
-> [艦これ](http://www.dmm.com/netgame_s/kancolle/gallery/)
+> [艦隊Collection](http://www.dmm.com/netgame_s/kancolle/gallery/)
 
 --
 
@@ -24,50 +24,56 @@
 
 ### Q
 
-- containsやremoveはどうやって対象のオブジェクトを探してくるの？
-- Integer.MaxValue以上の要素をaddしたらどうなるの？
+- containsやremoveはどうやって対象のオブジェクトを探す？
+- Integer.MAX_VALUE以上の要素をaddしたらどうなる？
 
 ### Tips
 
-- Itarate中に要素を追加したり削除したりするとErrorになるよ。
-- addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返してね。
+- Itarate中に要素を追加したり削除したりするとErrorになる。
+- addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返す。
 
 --
 
-### 既知のすべての実装クラス:
+### 既知の実装クラス:
 
-全ては多すぎますが、Set, List, Deque(Queue)など。
+全ては多すぎますが、Set, List, Deque(Queue)など。(Mapは別)
 
 ![alt](./overview.jpg)
+
+> [Learn with Harsha](http://learnwithharsha.com/day-5-collections-framework/)
 
 ---
 
 ### Collections
-li ul
-ユーティリティクラス。
-便利メソッドの詰め合わせ。
 
-* EMPTY_SET(MAPやLISTも)
-	- 空のSetなどを持ってくる。
-* sort
+> このクラスは、コレクションに作用する、またはコレクションを返す static メソッドだけで構成されます。
+
+[Collections-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collections.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Collections.java.html)
+
+* emptySet() (MAPやLISTも)
+	- 空のSetを持ってくる。
+* sort(List<T> list, [Comparator<? super T> c])
 	- mergesortする。 O(n log(n)) のパフォーマンス
-* binarySearch
+* binarySearch(List<? extends T> list, T key, [Comparator<? super T> c])
 	- sortしてから使うと探索の効率が良くなる。 O(n) -> O(log (n))
 * reverse shuffle rotate
 	- Listの順番を入れ替える。O(n)
-* disjoint
+* disjoint(Collection<?> c1, Collection<?> c2)
 	- 共通の要素があるかのチェック
 * max (min)
 	- 要素の順序付けに従って、指定されたコレクションの最大の要素を返す。
 
+#### Q
+
+- `Comparator`, `Comparable`ってどう違うの？
+- sortのアルゴリズムはどんなの？
 
 ---
 
 Any Question?
 
-<textarea name="example" cols="50" rows="10" style="font-size:100%;">
-memo
-</textarea>
+![alt](./bakanisinaide.jpg)
+
 
 ---
 

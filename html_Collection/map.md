@@ -1,5 +1,7 @@
 ### Map
 
+準備中
+
 メソッド群
 
 * ContainsKey //Keyの存在チェック

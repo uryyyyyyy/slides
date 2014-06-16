@@ -6,9 +6,9 @@
 
 どんなメソッドを持ってるべきか考えてみる。
 
-![alt](./kankoreList.jpg)
+![alt](./kankoreList.png)
 
-> [艦これ](http://www.dmm.com/netgame_s/kancolle/gallery/)
+> [艦隊List](http://www.dmm.com/netgame_s/kancolle/gallery/)
 
 --
 
@@ -19,18 +19,21 @@
 * indexOf(E element) //要素の検索
 * remove(int index) //要素の削除
 * set(int index, E element) //要素の代入
+* toArray(T[] a) //配列を返す
 
 など、要素の順番（index）に対してアクセスする。
 
 ### Q
 
-- indexOfの実装は？
+* indexOfの実装は？
 
 ### Tips
 
-- 順番を入れ替える系はCollectionsに入っている
+* 順番を入れ替える系はCollections, Arraysに入っている
 
 --
+
+ListのAPIにこんな記述が。
 
 > List インタフェースは、iterator、add、remove、equals、および hashCode の各メソッドの規約に対して、Collection インタフェースで指定されているものに加えてさらに条項を追加します。便宜上、ほかの継承メソッドの宣言もここに含まれます。
 
@@ -45,7 +48,7 @@
 
 * AbstractList // Listのスケルトン実装（RandamAccsess）
 * AbstractSequentialList // Listのスケルトン実装（Sequential）
-* ArrayList // ド定番
+* ArrayList // 定番
 * AttributeList // **ggrenaiks**
 * CopyOnWriteArrayList // 同期させたい時などに役立つ(?)
 * LinkedList // List + Deque
@@ -59,29 +62,55 @@
 
 - スケルトン実装って？
 - スレッドセーフな実装って？
+- SortedListがないのは何で？
+
+---
+
+## Arrays
+
+> このクラスには、ソートや検索など、配列を操作するためのさまざまなメソッドがあります。また、配列をリストとして表示するための static ファクトリもあります。
+
+> [Arrays-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html)
+
+- asList(T... a)
+	* 指定された配列に連動する固定サイズのリストを返します。
+- binarySearch(Object[] a, Object key)
+
+- copyOf(T[] original, int newLength)
+
+
+### Tips
+
+- 今や使うとしたらasListくらい？これには落とし穴が。。。
+- Collectionsクラスは中でArraysを呼んでたりする。(sortとか)
 
 ---
 
 ## ArrayList
 
-配列に並べたList。
+> List インタフェースのサイズ変更可能な配列の実装です。
+
+> [ArrayList-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html)
 
 ![alt](./arrayList.png)
 
 ### Feature
 
 * インデックスを指定してのget/setが速い
-* 先頭からすべての順番を取っていくのが速い。
+* 先頭からすべての要素を取っていくのが速い。
 
-### Implement
+### Q
 
-[ArrayList(JDK1.7_60)](./ArrayList.java)
+* add, removeのオーダーは？
+* get, setのオーダーは？
 
 ---
 
 ## LinkedList
 
-nodeで並べたList。
+> List および Deque インタフェースの二重リンクリスト実装です。
+
+> [LinkedList-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html)
 
 ![alt](./linkedList.png)
 
@@ -89,9 +118,11 @@ nodeで並べたList。
 
 * 要素のadd/removeが速い。
 
-### Implement
+### Q
 
-[LinkedList(JDK1.7_60)](./LinkedList.java)
+* add, removeのオーダーは？
+* get, setのオーダーは？
+* Capacityの取り扱いは？
 
 ---
 
@@ -108,6 +139,4 @@ sortしてからbinarySearch（二分探索）すれば探索の効率が良く�
 
 Any Question?
 
-<textarea name="example" cols="50" rows="10" style="font-size:100%;">
-memo
-</textarea>
+![alt](./bakanisinaide.jpg)
