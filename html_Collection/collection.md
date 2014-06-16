@@ -2,7 +2,7 @@
 
 > コレクションは、その要素であるオブジェクトのグループを表します。
 
-> [Collection-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collection.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collection.html)
 
 どんなメソッドを持ってるべきか考えてみる
 
@@ -48,11 +48,13 @@
 
 > このクラスは、コレクションに作用する、またはコレクションを返す static メソッドだけで構成されます。
 
-[Collections-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collections.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Collections.java.html)
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collections.html) - [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Collections.java.html)
+
+--
 
 * emptySet() (MAPやLISTも)
 	- 空のSetを持ってくる。
-* sort(List<T> list, [Comparator<? super T> c])
+* sort(List&lt;T&gt; list, [Comparator<? super T> c])
 	- mergesortする。 O(n log(n)) のパフォーマンス
 * binarySearch(List<? extends T> list, T key, [Comparator<? super T> c])
 	- sortしてから使うと探索の効率が良くなる。 O(n) -> O(log (n))
@@ -74,6 +76,7 @@ Any Question?
 
 ![alt](./bakanisinaide.jpg)
 
+> [hatena](http://f.hatena.ne.jp/pema/20140126003617)
 
 ---
 

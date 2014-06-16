@@ -1,8 +1,7 @@
 ## List
 
 > 順序付けられたコレクションです。シーケンスとも呼ばれます。
-
-> [List-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/List.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/List.html)
 
 どんなメソッドを持ってるべきか考えてみる。
 
@@ -69,8 +68,7 @@ ListのAPIにこんな記述が。
 ## Arrays
 
 > このクラスには、ソートや検索など、配列を操作するためのさまざまなメソッドがあります。また、配列をリストとして表示するための static ファクトリもあります。
-
-> [Arrays-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) -  [source(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html)
 
 - asList(T... a)
 	* 指定された配列に連動する固定サイズのリストを返します。
@@ -89,10 +87,11 @@ ListのAPIにこんな記述が。
 ## ArrayList
 
 > List インタフェースのサイズ変更可能な配列の実装です。
-
-> [ArrayList-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) -  [source(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html)
 
 ![alt](./arrayList.png)
+
+> [www.wakhok.ac.jp](http://www.wakhok.ac.jp/~tomoharu/j2ee1-tokyo-2005/text/index_c9.html)
 
 ### Feature
 
@@ -101,18 +100,19 @@ ListのAPIにこんな記述が。
 
 ### Q
 
-* add, removeのオーダーは？
-* get, setのオーダーは？
+* add, remove, get, setのオーダーは？
+* Capacityの取り扱いは？
 
 ---
 
 ## LinkedList
 
 > List および Deque インタフェースの二重リンクリスト実装です。
-
-> [LinkedList-JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) [source(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html)
+> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) - [source(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html)
 
 ![alt](./linkedList.png)
+
+> [www.wakhok.ac.jp](http://www.wakhok.ac.jp/~tomoharu/j2ee1-tokyo-2005/text/index_c9.html)
 
 ### Feature
 
@@ -120,9 +120,8 @@ ListのAPIにこんな記述が。
 
 ### Q
 
-* add, removeのオーダーは？
-* get, setのオーダーは？
-* Capacityの取り扱いは？
+* add, remove, get, setのオーダーは？
+* Dequeって何？
 
 ---
 
@@ -140,3 +139,5 @@ sortしてからbinarySearch（二分探索）すれば探索の効率が良く�
 Any Question?
 
 ![alt](./bakanisinaide.jpg)
+
+[livedoor.blogimg.jp](./omaeha.jpg)
