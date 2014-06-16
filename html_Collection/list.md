@@ -88,8 +88,6 @@ ListのAPIにこんな記述が。
 
 ![alt](./arrayList.png)
 
-> [www.wakhok.ac.jp](http://www.wakhok.ac.jp/~tomoharu/j2ee1-tokyo-2005/text/index_c9.html)
-
 ### Feature
 
 * インデックスを指定してのget/setが速い
@@ -123,8 +121,6 @@ public E get(int index) {
 > [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html) - [Row(JDK1.7_60)](./LinkedList.java)
 
 ![alt](./linkedList.png)
-
-> [www.wakhok.ac.jp](http://www.wakhok.ac.jp/~tomoharu/j2ee1-tokyo-2005/text/index_c9.html)
 
 ### Feature
 
@@ -182,10 +178,4 @@ sortしてからbinarySearch（二分探索）すれば探索の効率が良く�
 
 ## Reference
 
-### row source(Download)
-
-
-
-### SpecialThanks
-
-艦これ（DMM）
+- [艦これ](http://www.dmm.com/netgame_s/kancolle/)
