@@ -53,11 +53,7 @@
 --
 
 * emptySet() (MAPやLISTも)
-	- 空のSetを持ってくる。---
-
-## Reference
-
-- [艦これ](http://www.dmm.com/netgame_s/kancolle/)
+	- 空のSetを持ってくる。
 * sort(List&lt;T&gt; list, [Comparator<? super T> c])
 	- mergesortする。 O(n log(n)) のパフォーマンス
 * binarySearch(List<? extends T> list, T key, [Comparator<? super T> c])
