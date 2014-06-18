@@ -64,12 +64,14 @@
 
 --
 
+### Collectionsのメソッド
+
 * emptySet() (MAPやLISTも)
 	- 空のSetを持ってくる。
 * sort(List&lt;T&gt; list, [Comparator<? super T> c])
 	- `mergesort`する。 O(n log(n)) のパフォーマンス
 * binarySearch(List<? extends T> list, T key, [Comparator<? super T> c])
-	- `sort`してから使うと探索の効率が良くなる。 O(n) -> O(log (n))
+	- `sort`してから使うと探索が速くなる。 O(n) -> O(log (n))
 	- というより、`sort`してないで使うのは想定されていない
 * reverse shuffle rotate
 	- Listの順番を入れ替える。O(n)
@@ -84,7 +86,7 @@
 
 - `Comparator`, `Comparable`ってどう違うの？
 - sortのアルゴリズムはどんなの？
-- disjointって単語は何？
+- disjointって単語の意味は？
 
 ---
 

@@ -41,7 +41,7 @@
 ### Tips
 
 * 順番を入れ替える系はCollections, Arraysに入っている
-	- 例えば、`sort`で検索してみる
+	- 例えば、`sort`の実装を読んでみるとわかる
 
 --
 
@@ -146,8 +146,14 @@ public E get(int index) {
 
 ...
 
+@SuppressWarnings("unchecked")
+	E elementData(int index) {
+		return (E) elementData[index];
+	}
 
 ```
+
+内部でelementDataというオブジェクトの配列を持っている。
 
 ---
 
@@ -174,7 +180,15 @@ public E get(int index) {
 ## Implement
 
 ```java
-Node<E> node(int index) {
+
+	public E get(int index) {
+		checkElementIndex(index);
+		return node(index).item;
+	}
+
+...
+
+	Node<E> node(int index) {
         // assert isElementIndex(index);
 
         if (index < (size >> 1)) {
