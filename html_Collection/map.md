@@ -1,25 +1,43 @@
-### Map
 
 準備中
 
-メソッド群
+---
 
-* ContainsKey //Keyの存在チェック
-* ContainsValue //Valueの存在チェック
-* entrySet //要素の集合を取る。
-* get //要素の取得
-* keySet //Keyの集合を取る。
-* put //要素の追加
-* remove //要素の削除
-* values //Valueの集合を取る。
+## Map
+
+> キーを値にマッピングするオブジェクトです。...インタフェースというよりむしろ完全に抽象クラスであった`Dictionary`クラスに代わるものです。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Map.html)
+
+
+![alt](./kankoreMap.png)
+
+> [艦隊Map](http://www.dmm.com/netgame_s/kancolle/gallery/)
 
 --
 
-実装クラス
+## どんなメソッドを持ってるべき？
 
-* HashMap
-* LinkedHashMap
-* TreeMap
+
+### Response
+
+* KeyからオブジェクトをCRUDする操作
+* 
+
+--
+
+## インターフェースのメソッド
+
+* put(K key, V value)
+* get(Object key)
+* remove(Object key)
+* keySet()
+
+
+--
+
+## 既知のすべての実装クラス
+
+数が多いので省略して。
 
 ---
 
