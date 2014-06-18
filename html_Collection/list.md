@@ -181,6 +181,17 @@ public E get(int index) {
 
 ```java
 
+public class LinkedList<E>
+	extends AbstractSequentialList<E>
+	implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+	{
+
+	transient Node<E> first;
+
+	transient Node<E> last;
+
+...
+
 	public E get(int index) {
 		checkElementIndex(index);
 		return node(index).item;
@@ -206,9 +217,11 @@ public E get(int index) {
 
 ```
 
+内部でNodeを辿ってる。
+
 --
 
-## いらない子？
+### LinkedListはいらない子？
 
 * 途中の要素にadd removeする機会はほとんどない
 * Nodeを持つためメモリ消費が多い。
@@ -225,8 +238,8 @@ Collectionsクラスに以下のメソッドが用意されている
 * sort(list, [options])
 * binarySearch(list, target, Comparator)
 
-binarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
-が、sortに(O(n logn)かかる。
+`binarySearch`すれば探索が(O(n) -> O(logn))になる。
+が、`sort`に(O(n logn)かかる。
 
 ### 使いどき
 
