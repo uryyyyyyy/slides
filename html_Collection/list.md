@@ -1,13 +1,23 @@
 ## List
 
 > 順序付けられたコレクションです。シーケンスとも呼ばれます。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/List.html)
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/List.html)
 
-どんなメソッドを持ってるべきか考えてみる。
+
 
 ![alt](./kankoreList.png)
 
 > [艦隊List](http://www.dmm.com/netgame_s/kancolle/gallery/)
+
+--
+
+## どんなメソッドを持ってるべき？
+
+
+### Response
+
+* 何番目の値が欲しい、とか
+* 最後に入れたやつを取りたいとか
 
 --
 
@@ -22,6 +32,8 @@
 
 など、要素の順番（index）に対してアクセスする。
 
+--
+
 ### Q
 
 * indexOfの実装は？
@@ -29,6 +41,7 @@
 ### Tips
 
 * 順番を入れ替える系はCollections, Arraysに入っている
+	- 例えば、`sort`で検索してみる
 
 --
 
@@ -39,7 +52,6 @@ ListのAPIにこんな記述が。
 ### Q
 
 * どういう意味？
-
 
 --
 
@@ -54,39 +66,59 @@ ListのAPIにこんな記述が。
 * Stack // LIFO(Dequeで良くない？)
 * Vector // スレッドセーフなArrayList。過去の遺産
 
+--
+
 ### Q
 
 - スケルトン実装って？
 - スレッドセーフな実装って？
 - SortedListがないのは何で？
 
+### Tips
+
+* `AbstractList`の中を見ると、`add`などが`UnsupportedOperationException`を返している。
+	- 実装クラスでオーバーライドしないと実行時例外に
+	- 後付けなんだろうなぁ。。。
+
 ---
 
 ## Arrays
 
 > このクラスには、ソートや検索など、配列を操作するためのさまざまなメソッドがあります。また、配列をリストとして表示するための static ファクトリもあります。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html) - [Row(JDK1.7_60)](./Arrays.java)
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Arrays.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/Arrays.java.html) - [Row(JDK1.7_60)](./Arrays.java)
+
+--
+
+## Arraysのメソッド
 
 - asList(T... a)
 	* 指定された配列に連動する固定サイズのリストを返します。
 - binarySearch(Object[] a, Object key)
-
+	* Collectionsのメソッドはこれを呼び出します。
 - copyOf(T[] original, int newLength)
 
+他は全て配列への操作なのに、asListだけListを返します。
+これは`Collections`とかが持つべき処理だと思う。
+
+
+--
 
 ### Tips
 
-- 今や使うとしたらasListくらい？これには落とし穴が。。。
-- Collectionsクラスは中でArraysを呼んでたりする。(sortとか)
+* 今や使うとしたらasListくらい？これには落とし穴が。。。
+	- 実装を読むと、内部クラスにArrayListというクラス名が。。。
+* Collectionsクラスは中でArraysを呼んでたりする。(sortとか)
 
 ---
 
 ## ArrayList
 
 > List インタフェースのサイズ変更可能な配列の実装です。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html) - [Row(JDK1.7_60)](./ArrayList.java)
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/ArrayList.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/ArrayList.java.html) - [Row(JDK1.7_60)](./ArrayList.java)
 
 ![alt](./arrayList.png)
+
+--
 
 ### Feature
 
@@ -104,11 +136,16 @@ ListのAPIにこんな記述が。
 ```java
 private transient Object[] elementData;
 
+...
+
 public E get(int index) {
         rangeCheck(index);
 
         return elementData(index);
     }
+
+...
+
 
 ```
 
@@ -117,9 +154,11 @@ public E get(int index) {
 ## LinkedList
 
 > List および Deque インタフェースの二重リンクリスト実装です。
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html) - [Row(JDK1.7_60)](./LinkedList.java)
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedList.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedList.java.html) - [Row(JDK1.7_60)](./LinkedList.java)
 
 ![alt](./linkedList.png)
+
+--
 
 ### Feature
 
@@ -153,17 +192,34 @@ Node<E> node(int index) {
 
 ```
 
+--
+
+## いらない子？
+
+* 途中の要素にadd removeする機会はほとんどない
+* Nodeを持つためメモリ消費が多い。
+
+ということで、Listとして使うことはほとんどないのではと。
+
 
 ---
 
 ### sortとsearch
 
-Collectionsクラスに以下のメソッドが用意されている。。
+Collectionsクラスに以下のメソッドが用意されている
 
 * sort(list, [options])
 * binarySearch(list, target, Comparator)
 
-sortしてからbinarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
+binarySearch（二分探索）すれば探索の効率が良くなる。(O(n) -> O(logn))
+が、sortに(O(n logn)かかる。
+
+### 使いどき
+
+* 何度も同じListをsearchする
+	- `sort`してから`binarySearch`。
+* Listに頻繁にadd removeする
+	- 毎回`find`したほうが速いかも。
 
 ---
 

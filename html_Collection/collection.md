@@ -1,14 +1,24 @@
 ### Collection
 
 > コレクションは、その要素であるオブジェクトのグループを表します。
-
-> [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collection.html)
-
-どんなメソッドを持ってるべきか考えてみる
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collection.html)
 
 ![alt](./kankore.jpg)
 
 > [艦隊Collection](http://www.dmm.com/netgame_s/kancolle/gallery/)
+
+--
+
+## どんなメソッドを持ってるべきか？
+
+要素に対して行う処理とは？
+
+### Response
+
+* CRUD操作的なものかな。
+* 追加・変更・参照・削除とか？
+* Immutableにしたいな
+
 
 --
 
@@ -22,6 +32,8 @@
 * toArray() //配列に直す
 * iterator() //iteratorを返す。
 
+--
+
 ### Q
 
 - containsやremoveはどうやって対象のオブジェクトを探す？
@@ -31,6 +43,7 @@
 
 - Itarate中に要素を追加したり削除したりするとErrorになる。
 - addとかclearとかを実装したくない場合は実行時に`UnsupportedOperationException`を返す。
+	* 実行時まで気付かない。すごくイケてない。
 
 --
 
@@ -44,10 +57,9 @@
 
 ---
 
-### Collections
+## Collections
 
 > このクラスは、コレクションに作用する、またはコレクションを返す static メソッドだけで構成されます。
-
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Collections.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/Collections.java.html) - [Row(JDK1.7_60)](./Collections.java)
 
 --
@@ -55,9 +67,10 @@
 * emptySet() (MAPやLISTも)
 	- 空のSetを持ってくる。
 * sort(List&lt;T&gt; list, [Comparator<? super T> c])
-	- mergesortする。 O(n log(n)) のパフォーマンス
+	- `mergesort`する。 O(n log(n)) のパフォーマンス
 * binarySearch(List<? extends T> list, T key, [Comparator<? super T> c])
-	- sortしてから使うと探索の効率が良くなる。 O(n) -> O(log (n))
+	- `sort`してから使うと探索の効率が良くなる。 O(n) -> O(log (n))
+	- というより、`sort`してないで使うのは想定されていない
 * reverse shuffle rotate
 	- Listの順番を入れ替える。O(n)
 * disjoint(Collection<?> c1, Collection<?> c2)
@@ -65,10 +78,13 @@
 * max (min)
 	- 要素の順序付けに従って、指定されたコレクションの最大の要素を返す。
 
-#### Q
+--
+
+### Q
 
 - `Comparator`, `Comparable`ってどう違うの？
 - sortのアルゴリズムはどんなの？
+- disjointって単語は何？
 
 ---
 
