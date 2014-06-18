@@ -239,6 +239,7 @@ Collectionsクラスに以下のメソッドが用意されている
 * binarySearch(list, target, Comparator)
 
 `binarySearch`すれば探索が(O(n) -> O(logn))になる。
+
 が、`sort`に(O(n logn)かかる。
 
 ### 使いどき
