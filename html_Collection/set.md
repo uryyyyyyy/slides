@@ -10,7 +10,6 @@
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/Set.html)
 
 
-
 ![alt](./kankoreSet.png)
 
 > [艦隊Set](http://www.dmm.com/netgame_s/kancolle/gallery/)
@@ -39,15 +38,83 @@
 
 ## 既知のすべての実装クラス
 
-* AbstractSet //
-* ConcurrentSkipListSet
-* CopyOnWriteArraySet
-* EnumSet
-* HashSet
-* JobStateReasons
-* LinkedHashSet
-* TreeSet
+* AbstractSet //Set インタフェースのスケルトン実装
+* ConcurrentSkipListSet //同期の際に使える（？）順序付きSet
+* CopyOnWriteArraySet //内部でCopyOnWriteArrayListを持つSet
+* EnumSet //Enum用の軽量Set
+* HashSet //Hash値でもって管理するもの
+* JobStateReasons //Set?
+* LinkedHashSet //HashSetに順序がついたもの
+* TreeSet //SortされたSet
+
+基本的にはMapと同じ（MapのKeyも一意なのでSetと同じになる。）
+
+--
+
+#### Q
+
+#### Tips
+
+
 
 ---
 
-基本的にはMapと同じ（MapのKeyも一意なのでSetと同じになる。）
+## HashSet
+
+> このクラスは、ハッシュテーブル (実際には HashMap のインスタンス) に連動し、Set インタフェースを実装します。このクラスでは、セットの反復順序について保証しません。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/HashSet.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/HashSet.java.html) - [Row(JDK1.7_60)](./HashSet.java)
+
+![alt](./HashSet.png)
+
+--
+
+### Feature
+
+* インデックスを指定してのget/setが速い
+
+### Q
+
+* add, remove, get, setのオーダーは？
+* Capacityの取り扱いは？
+
+--
+
+## Implement
+
+```java
+private transient Object[] elementData;
+
+...
+
+public E get(int index) {
+        rangeCheck(index);
+
+        return elementData(index);
+    }
+
+...
+
+@SuppressWarnings("unchecked")
+	E elementData(int index) {
+		return (E) elementData[index];
+	}
+
+```
+
+内部でelementDataというオブジェクトの配列を持っている。
+
+---
+
+## Any Question?
+
+![alt](./k_grave.jpg)
+
+> 「精神的に向上心のない者はばかだ」 - 夏目漱石『こころ』
+
+> [livedoor.blogimg.jp/fknews](http://livedoor.blogimg.jp/fknews/imgs/3/1/31c9310b.jpg)
+
+---
+
+## Reference
+
+- [艦これ](http://www.dmm.com/netgame_s/kancolle/)
