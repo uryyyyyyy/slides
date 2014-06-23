@@ -85,7 +85,7 @@
 * どういうときに使うの？
 
 
---
+---
 
 ### HashMap
 
@@ -100,7 +100,7 @@
 
 要素を追加する際に、Keyにhash()をかけて得られた出力値をindexとして配置する。
 そうすることで、getする際にKeyにhash()をかけるだけで要素の場所がわかる。
-(理論上、O(１))
+(理論上、O(１))。
 
 `new HashMap(initialCapacity)`で初期サイズを定義できる。
 
@@ -113,11 +113,12 @@
 * get, put のオーダーは？
 * 複数のKeyでhash値が被った場合は？
 * なんで内部でもhashかけるの？
-* `DEFAULT_LOAD_FACTOR`とは？
+* `HashMap(int initialCapacity, float loadFactor)`のloadFactorとは？
+* hashの再計算（resize）が走るタイミングは？
 
 ### Tips
 
-* Keyになるオブジェクトにはいくつか前提条件がある。
+* Keyになるオブジェクトには暗黙の前提条件がある。
 	- equals, hashCodeの実装。Immutable。
 
 --
@@ -126,6 +127,7 @@
 
 * get
 * put
+* resize
 
 ---
 
@@ -159,6 +161,7 @@
 > 赤 - 黒ツリーに基づく NavigableMap 実装です。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/TreeMap.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/TreeMap.java.html) - [Row(JDK1.7_60)](./TreeMap.java)
 
+赤黒ツリーとは。
 
 > 赤黒木は、要素の挿入・削除・検索などの操作が、 いかなる場合でも O(logn) の計算量で実行出来る平衡木です[これで分かった赤黒木](http://www.moon.sannet.ne.jp/okahisa/rb-tree/rb-tree.html)
 
@@ -170,6 +173,7 @@
 ## Feature
 
 Keyを順番にsortして保持する。
+
 （比較可能（Comparable）を実装していること。）
 
 Iterator（拡張for）で回すときにKeyの大きさ順で取ってきたいときに使う。
@@ -179,15 +183,6 @@ Iterator（拡張for）で回すときにKeyの大きさ順で取ってきたい
 ### Q
 
 ### Tips
-
-
----
-
-仕組み紹介。
-キーの完全一致、
-
-
-
 
 ---
 

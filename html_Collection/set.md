@@ -1,9 +1,4 @@
 
-
-準備中
-
----
-
 ## Set
 
 > 重複要素のないコレクションです。...数学で言う集合の抽象化をモデル化します。
@@ -28,8 +23,8 @@
 
 ## インターフェースのメソッド
 
-* containsAll(Collection<?> c) //入力のコレクションの全要素が含まれているか？
-* retainAll(Collection<?> c) //入力のコレクション内にある要素だけを保持する
+* containsAll(Collection<?> c) //入力値の全要素が含まれているか？
+* retainAll(Collection<?> c) //入力値にある要素だけを保持する
 * add(E e) //要素の追加（重複しない場合に限る）
 
 など、Collectionとほぼ同じ。
@@ -40,14 +35,16 @@
 
 * AbstractSet //Set インタフェースのスケルトン実装
 * ConcurrentSkipListSet //同期の際に使える（？）順序付きSet
-* CopyOnWriteArraySet //内部でCopyOnWriteArrayListを持つSet
+* CopyOnWriteArraySet //内部でCopyOnWriteArrayListを持つ
 * EnumSet //Enum用の軽量Set
 * HashSet //Hash値でもって管理するもの
 * JobStateReasons //Set?
 * LinkedHashSet //HashSetに順序がついたもの
 * TreeSet //SortされたSet
 
-基本的にはMapと同じ（MapのKeyも一意なのでSetと同じになる。）
+基本的にはMapと同じ
+
+（MapのKeyも一意なのでSetと同じになる。）
 
 --
 
@@ -71,7 +68,8 @@
 ### Feature
 
 内部でHashMap<E, Object>を使ってる。
-特筆することはないかな。
+
+HashSet内で何か処理をすることはあまりない。
 
 
 --
@@ -81,33 +79,9 @@
 ### Tips
 
 
-
-
 --
 
 ## Implementation
-
-```java
-private transient Object[] elementData;
-
-...
-
-public E get(int index) {
-        rangeCheck(index);
-
-        return elementData(index);
-    }
-
-...
-
-@SuppressWarnings("unchecked")
-	E elementData(int index) {
-		return (E) elementData[index];
-	}
-
-```
-
-内部でelementDataというオブジェクトの配列を持っている。
 
 ---
 
@@ -121,6 +95,9 @@ public E get(int index) {
 
 最後に追加・もしくは参照された値が始めに来るようになっているため、順序も含めて保持しておきたいときに用いる。
 
+* 要素を順番になめるとき→LinkedList
+* Setとして要素の有無を確認するとき→HashSet
+
 欠点として、別でLinkedListも作るため、要素の追加には時間がかかる。
 
 --
@@ -128,6 +105,7 @@ public E get(int index) {
 ### Q
 
 * むしろ質問ある？
+* 追加した順番を保持しておきたいときってどんなとき？
 
 ### Tips
 
@@ -150,6 +128,7 @@ public E get(int index) {
 （比較可能（Comparable）を実装していること。）
 
 Iterator（拡張for）で回すとsortされた結果が得られる。
+
 **SortedListでなくこちらを使うべき**
 
 --
@@ -157,19 +136,10 @@ Iterator（拡張for）で回すとsortされた結果が得られる。
 ### Q
 
 * 同値のオブジェクトが入ってきた場合は？
-* 
 
 ### Tips
 
-
----
-
-
-
-
-
-
-
+* Setというより、Sortする用に使うのが正しそう。
 
 ---
 
