@@ -1,8 +1,4 @@
 
-準備中
-
----
-
 ## Map
 
 > キーを値にマッピングするオブジェクトです。...インタフェースというよりむしろ完全に抽象クラスであった Dictionary クラスに代わるものです。
@@ -33,10 +29,10 @@
 
 --
 
-#### Q
+### Q
+
 * get, removeはなぜObjectで受けてるの？
 * Map.Entryというクラスがある？
-
 
 --
 
@@ -56,20 +52,20 @@
 
 ---
 
-### SortedMap
+## SortedMap
 
 > そのキーに対して全体順序付けを提供する Map です。マップの順序付けは、キーの自然順序付けに従って行われるか、ソートマップ構築時に通常提供される Comparator を使って行われます。[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/SortedMap.html)
 
 --
 
-### どんなメソッドを持ってるべき？
+## どんなメソッドを持ってるべき？
 
 
 --
 
 ## インターフェースのメソッド
 
-* comparator() // 要素の追加
+* comparator() // このマップ内のキーを順序付けするのに使うコンパレータを返す。
 * firstKey() // Map内の最初のKeyを返す
 * headMap(K toKey) // toKeyよりも小さいキーを持つ部分のMapを返す。
 * lastKey() // Map内の最後のKeyを返す
@@ -79,10 +75,15 @@
 
 --
 
-### 既知のすべての実装クラス:
+## 既知のすべての実装クラス:
 
 * ConcurrentSkipListMap
 * TreeMap
+
+### Q
+
+* どういうときに使うの？
+
 
 --
 
@@ -98,10 +99,8 @@
 ### Feature
 
 要素を追加する際に、Keyにhash()をかけて得られた出力値をindexとして配置する。
-普通はHash値は被らないはずだが、同じになった場合はLiskedListで追加されていく。
-
-getする際は、同様にKeyにhash()をかけて得られたindexの先にValuesがある。
-もし複数の要素があった場合は、順番にKeyでequals()比較を行う。一致したらそのValueを取ってくる。
+そうすることで、getする際にKeyにhash()をかけるだけで要素の場所がわかる。
+(理論上、O(１))
 
 `new HashMap(initialCapacity)`で初期サイズを定義できる。
 
@@ -109,37 +108,77 @@ getする際は、同様にKeyにhash()をかけて得られたindexの先にVal
 
 --
 
-#### Q
+### Q
 
 * get, put のオーダーは？
+* 複数のKeyでhash値が被った場合は？
+* なんで内部でもhashかけるの？
+* `DEFAULT_LOAD_FACTOR`とは？
 
-#### Tips
+### Tips
+
+* Keyになるオブジェクトにはいくつか前提条件がある。
+	- equals, hashCodeの実装。Immutable。
 
 --
 
-### Implement
+## Implementation
+
+* get
+* put
 
 ---
 
-### LinkedHashMap
+## LinkedHashMap
 > 予測可能な反復順序を持つ Map インタフェースのハッシュテーブルとリンクリストの実装です。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedHashMap.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedHashMap.java.html) - [Row(JDK1.7_60)](./LinkedHashMap.java)
+
+--
+
+## Feature
 
 最後に追加・もしくは参照された値が始めに来るようになっているため、順序も含めて保持しておきたいときに用いる。
 
 欠点として、別でLinkedListも作るため、要素の追加には時間がかかる。
 
+使いドコロとしては、MapをIterator（拡張for）で回すときに順番も一応持っておきたい場合かな？
+
+--
+
+### Q
+
+* むしろ質問ある？
+
+### Tips
+
+* むしろTips教えて。
+
 ---
 
 ### TreeMap
-Keyの比較をして、二分木でMapを作成する。
+> 赤 - 黒ツリーに基づく NavigableMap 実装です。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/TreeMap.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/TreeMap.java.html) - [Row(JDK1.7_60)](./TreeMap.java)
 
-（比較可能（Comparable）を実装していること。）
+
+> 赤黒木は、要素の挿入・削除・検索などの操作が、 いかなる場合でも O(logn) の計算量で実行出来る平衡木です[これで分かった赤黒木](http://www.moon.sannet.ne.jp/okahisa/rb-tree/rb-tree.html)
+
 
 ![alt](./treeMap.jpg)
 
-Keyのsort順に並べたい場合はこれを使うとよいでしょう。
+--
 
+## Feature
+
+Keyを順番にsortして保持する。
+（比較可能（Comparable）を実装していること。）
+
+Iterator（拡張for）で回すときにKeyの大きさ順で取ってきたいときに使う。
+
+--
+
+### Q
+
+### Tips
 
 
 ---

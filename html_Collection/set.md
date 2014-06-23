@@ -70,16 +70,22 @@
 
 ### Feature
 
-* インデックスを指定してのget/setが速い
+内部でHashMap<E, Object>を使ってる。
+特筆することはないかな。
 
-### Q
-
-* add, remove, get, setのオーダーは？
-* Capacityの取り扱いは？
 
 --
 
-## Implement
+### Q
+
+### Tips
+
+
+
+
+--
+
+## Implementation
 
 ```java
 private transient Object[] elementData;
@@ -102,6 +108,68 @@ public E get(int index) {
 ```
 
 内部でelementDataというオブジェクトの配列を持っている。
+
+---
+
+## LinkedHashSet
+> 予測可能な反復順序を持つ Set インタフェースのハッシュテーブルとリンクリストの実装です。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/LinkedHashSet.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/LinkedHashSet.java.html) - [Row(JDK1.7_60)](./LinkedHashSet.java)
+
+--
+
+## Feature
+
+最後に追加・もしくは参照された値が始めに来るようになっているため、順序も含めて保持しておきたいときに用いる。
+
+欠点として、別でLinkedListも作るため、要素の追加には時間がかかる。
+
+--
+
+### Q
+
+* むしろ質問ある？
+
+### Tips
+
+* むしろTips教えて。
+
+---
+
+### TreeSet
+> TreeMap に基づく NavigableSet 実装です。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/TreeSet.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/TreeSet.java.html) - [Row(JDK1.7_60)](./TreeSet.java)
+
+
+![alt](./treeSet.jpg)
+
+--
+
+## Feature
+
+要素Eが順序付けされた赤黒木が作成される。
+（比較可能（Comparable）を実装していること。）
+
+Iterator（拡張for）で回すとsortされた結果が得られる。
+**SortedListでなくこちらを使うべき**
+
+--
+
+### Q
+
+* 同値のオブジェクトが入ってきた場合は？
+* 
+
+### Tips
+
+
+---
+
+
+
+
+
+
+
 
 ---
 
