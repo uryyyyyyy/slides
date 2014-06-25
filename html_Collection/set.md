@@ -66,7 +66,7 @@ Collectionとほぼ同じ。
 
 ### Feature
 
-内部でHashMap&lt;E, Object&gt;を使ってる。
+内部で`HashMap<E, Object>`を使ってる。
 
 HashSet内で何か処理をすることはあまりない。
 
@@ -74,6 +74,8 @@ HashSet内で何か処理をすることはあまりない。
 --
 
 ### Q
+
+* え？ Mapのときに質問しろよ
 
 ### Tips
 
@@ -94,17 +96,16 @@ HashSet内で何か処理をすることはあまりない。
 
 最後に追加・もしくは参照された値が始めに来るようになっているため、順序も含めて保持しておきたいときに用いる。
 
-* 要素を順番になめるとき→LinkedList
-* Setとして要素の有無を確認するとき→HashSet
+内部でLinkedListも作るため、要素の追加には時間がかかる。
 
-欠点として、別でLinkedListも作るため、要素の追加には時間がかかる。
+* 要素を順番になめるとき→`LinkedList`
+* Setとして要素の有無を確認するとき→`HashSet`
 
 --
 
 ### Q
 
 * むしろ質問ある？
-* 追加した順番を保持しておきたいときってどんなとき？
 
 ### Tips
 
@@ -116,9 +117,6 @@ HashSet内で何か処理をすることはあまりない。
 > TreeMap に基づく NavigableSet 実装です。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/TreeSet.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/TreeSet.java.html) - [Row(JDK1.7_60)](./TreeSet.java)
 
-
-![alt](./treeSet.jpg)
-
 --
 
 ## Feature
@@ -127,8 +125,6 @@ HashSet内で何か処理をすることはあまりない。
 （比較可能（Comparable）を実装していること。）
 
 Iterator（拡張for）で回すとsortされた結果が得られる。
-
-**SortedListでなくこちらを使うべき**
 
 --
 
@@ -139,6 +135,7 @@ Iterator（拡張for）で回すとsortされた結果が得られる。
 ### Tips
 
 * Setというより、Sortする用に使うのが正しそう。
+* SortedList（毎回sortしなおす）でなく、SortedSetを使うべき。
 
 ---
 
