@@ -14,6 +14,8 @@
 ## どんなメソッドを持ってるべき？
 
 
+--
+
 ### Response
 
 * Collectionと同じじゃない？
@@ -23,36 +25,35 @@
 
 ## インターフェースのメソッド
 
-* containsAll(Collection<?> c) //入力値の全要素が含まれているか？
+Collectionとほぼ同じ。
+
+* containsAll(Collection<?> c) //入力値の全要素が含まれてるか？
 * retainAll(Collection<?> c) //入力値にある要素だけを保持する
 * add(E e) //要素の追加（重複しない場合に限る）
-
-など、Collectionとほぼ同じ。
 
 --
 
 ## 既知のすべての実装クラス
 
+基本的にはMapと同じ
+（MapのKeyだけを表現したものがSetと同じになる。）
+
 * AbstractSet //Set インタフェースのスケルトン実装
 * ConcurrentSkipListSet //同期の際に使える（？）順序付きSet
-* CopyOnWriteArraySet //内部でCopyOnWriteArrayListを持つ
+* CopyOnWriteArraySet//内部でCopyOnWriteArrayListを持つ
 * EnumSet //Enum用の軽量Set
 * HashSet //Hash値でもって管理するもの
 * JobStateReasons //Set?
 * LinkedHashSet //HashSetに順序がついたもの
 * TreeSet //SortされたSet
 
-基本的にはMapと同じ
-
-（MapのKeyも一意なのでSetと同じになる。）
-
 --
 
-#### Q
+### Q
 
-#### Tips
+### Tips
 
-
+* 内部の実装はほぼMapに移譲している。
 
 ---
 
@@ -61,13 +62,11 @@
 > このクラスは、ハッシュテーブル (実際には HashMap のインスタンス) に連動し、Set インタフェースを実装します。このクラスでは、セットの反復順序について保証しません。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/HashSet.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/HashSet.java.html) - [Row(JDK1.7_60)](./HashSet.java)
 
-![alt](./HashSet.png)
-
 --
 
 ### Feature
 
-内部でHashMap<E, Object>を使ってる。
+内部でHashMap&lt;E, Object&gt;を使ってる。
 
 HashSet内で何か処理をすることはあまりない。
 
