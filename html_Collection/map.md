@@ -122,12 +122,70 @@
 
 ## Implementation
 
-* get
-* put
-* resize
-* hash
-* loadFactor
-* indexFor
+```
+
+    transient Entry<K,V>[] table = (Entry<K,V>[]) EMPTY_TABLE;
+
+    public V get(Object key) {
+        if (key == null)
+            return getForNullKey();
+        Entry<K,V> entry = getEntry(key);
+
+        return null == entry ? null : entry.getValue();
+    }
+    
+    final Entry<K,V> getEntry(Object key) {
+        if (size == 0) {
+            return null;
+        }
+
+        int hash = (key == null) ? 0 : hash(key);
+        for (Entry<K,V> e = table[indexFor(hash, table.length)];
+             e != null;
+             e = e.next) {
+            Object k;
+            if (e.hash == hash &&
+                ((k = e.key) == key || (key != null && key.equals(k))))
+                return e;
+        }
+        return null;
+    }
+    
+    final int hash(Object k) {
+        int h = hashSeed;
+        if (0 != h && k instanceof String) {
+            return sun.misc.Hashing.stringHash32((String) k);
+        }
+
+        h ^= k.hashCode();
+
+        // This function ensures that hashCodes that differ only by
+        // constant multiples at each bit position have a bounded
+        // number of collisions (approximately 8 at default load factor).
+        h ^= (h >>> 20) ^ (h >>> 12);
+        return h ^ (h >>> 7) ^ (h >>> 4);
+    }
+    
+    static int indexFor(int h, int length) {
+        // assert Integer.bitCount(length) == 1 : "length must be a non-zero power of 2";
+        return h & (length-1);
+    }
+    
+    void resize(int newCapacity) {
+        Entry[] oldTable = table;
+        int oldCapacity = oldTable.length;
+        if (oldCapacity == MAXIMUM_CAPACITY) {
+            threshold = Integer.MAX_VALUE;
+            return;
+        }
+
+        Entry[] newTable = new Entry[newCapacity];
+        transfer(newTable, initHashSeedAsNeeded(newCapacity));
+        table = newTable;
+        threshold = (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY + 1);
+    }
+
+```
 
 ---
 
@@ -139,17 +197,15 @@
 
 ## Feature
 
-最後に追加・もしくは参照された値が始めに来るようになっているため、順序も含めて保持しておきたいときに用いる。
+追加された順番も保持しているため、Iterator（拡張For）で回すのが速い。
 
 欠点として、別でLinkedListも作るため、要素の追加には時間がかかる。
-
-使いドコロとしては、MapをIterator（拡張for）で回すときに順番も一応持っておきたい場合かな？
 
 --
 
 ### Q
 
-* 追加した順番を保持しておきたいときってどんなとき？
+* 全要素をなめるとき、なんで速くなるの？
 
 ### Tips
 
@@ -176,17 +232,42 @@ Iterator（拡張for）で回すときにKeyのsort順で取ってきたいと�
 
 ### Q
 
+
 ### Tips
 
 * Java７で仕様が変わった。
-	- CompalableでないKeyを使うとNPE
+	- ComparableでないKeyを使うとNPE
 
 --
 
 ## Implementation
 
-* put
-* get
+```
+    public V get(Object key) {
+        Entry<K,V> p = getEntry(key);
+        return (p==null ? null : p.value);
+    }
+
+    final Entry<K,V> getEntry(Object key) {
+        // Offload comparator-based version for sake of performance
+        if (comparator != null)
+            return getEntryUsingComparator(key);
+        if (key == null)
+            throw new NullPointerException();
+        Comparable<? super K> k = (Comparable<? super K>) key;
+        Entry<K,V> p = root;
+        while (p != null) {
+            int cmp = k.compareTo(p.key);
+            if (cmp < 0)
+                p = p.left;
+            else if (cmp > 0)
+                p = p.right;
+            else
+                return p;
+        }
+        return null;
+    }
+```
 
 ---
 

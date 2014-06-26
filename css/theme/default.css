@@ -168,9 +168,6 @@ li {
 li ul li{
   list-style-image : url(./black_arrow.png);}
   
-section p{
-  text-align: left;}
-  
 * + table{
 border-collapse: collapse;
 border-right: 1px solid #999 !important;
