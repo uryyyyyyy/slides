@@ -87,14 +87,14 @@
 
 ---
 
-### HashMap
+## HashMap
 
 > Map インタフェースのハッシュテーブルに基づく実装です。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/HashMap.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/HashMap.java.html) - [Row(JDK1.7_60)](./HashMap.java)
 
 --
 
-### Feature
+## Feature
 
 * put - Keyにhash()をかけて得られた出力値をindexとして配置する。
 * get - Keyにhash()をかけるだけで要素の場所がわかる。(理論上、O(１))。
@@ -125,6 +125,9 @@
 * get
 * put
 * resize
+* hash
+* loadFactor
+* indexFor
 
 ---
 
@@ -152,7 +155,7 @@
 
 ---
 
-### TreeMap
+## TreeMap
 > 赤 - 黒ツリーに基づく NavigableMap 実装です。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/TreeMap.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/TreeMap.java.html) - [Row(JDK1.7_60)](./TreeMap.java)
 

@@ -113,7 +113,7 @@ HashSet内で何か処理をすることはあまりない。
 
 ---
 
-### TreeSet
+## TreeSet
 > TreeMap に基づく NavigableSet 実装です。
 [JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/util/TreeSet.html) -  [Web(openjdk-7)](http://www.docjar.com/html/api/java/util/TreeSet.java.html) - [Row(JDK1.7_60)](./TreeSet.java)
 
@@ -135,7 +135,7 @@ Iterator（拡張for）で回すとsortされた結果が得られる。
 ### Tips
 
 * Setというより、Sortする用に使うのが正しそう。
-* SortedList（毎回sortしなおす）でなく、SortedSetを使うべき。
+* SortedList（毎回sortしなおす）でなく、SortedSet（TreeSet）を使うべき。
 
 ---
 
