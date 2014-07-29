@@ -7,6 +7,8 @@
 
 > [1st8](http://www.first8.nl/presentations/java8/#/3/1)
 
+（primitive型用のIntStreamなどもありますが、まぁ同じものです。）
+
 --
 
 > Streamの値の持ち方はjava.util.Listのようなイメージ。
@@ -18,11 +20,24 @@
 
 --
 
+## ラムダ式
+
+関数型インターフェースを実装した無名クラスの宣言のsyntax-sugar
+
+めっちゃ簡単に書けるよ
+
+```java
+
+
+```
+
+--
+
 ## 何が嬉しいの？
 
 処理を宣言的に（簡単に）書けるため、
 
-* 最適化（並列化）しやすい。勝手によろしくやってくれる
+* 最適化（並列化）しやすい。（内部で勝手にやってくれる）
 * バグりにくい
 * 読みやすい
 * 書くのが楽
@@ -31,43 +46,149 @@
 
 --
 
-## 学ぶ内容
+## 目次
 
+* 関数型インターフェース
+	- Predicate
+	- Function
+	- Supplier etc...
 * streamクラスのメソッド
 	- map
 	- filter
 	- flatMap
-	- forEach
+	- forEach etc...
 * Collect処理
-	- 
-* 関数型インターフェース
-	- Predicate
-	- Function
-	- Supplier
+	- groupingBy
+	- toList etc...
 
-## インターフェースのメソッド
+---
 
-* add(int index, E element) //要素の追加
-* get(int index) //要素の取得
-* indexOf(E element) //要素の検索
-* remove(int index) //要素の削除
-* set(int index, E element) //要素の代入
-* toArray(T[] a) //配列を返す
+## 関数型インターフェース
 
-など、要素の順番（index）に対してアクセスする。
+メソッド定義をひとつだけ持ったインターフェース。
+ラムダ式やメソッド参照の代入先になる。
+
+Javaだと関数が単体で（ファーストクラスとして）存在できないため、
+メソッドを一つだけ持ったクラスで対応している。
+
+**@FunctionalInterface**がついてるハズ。
+
+java.util.function以下にたくさん入ってる。
 
 --
 
-### Q
+## Supplier
 
-* indexOfの実装は？
+値を返す（供給する）関数。
+引数なしで何らかの値を返す。
+
+[source(JDK1.8_11)](./Supplier.java)
+
+```java
+
+Supplier<String> s = () -> "abc";
+
+```
+
+--
+
+## Consumer
+
+引数を受け取り、それを使って処理を行う関数。
+値を返さないで副作用を起こす。
+
+[source(JDK1.8_11)](./Consumer.java)
+
+```java
+
+Consumer<String> c = s -> System.out.println(s);
+
+```
+
+--
+
+## Predicate
+
+引数の判定を行う関数。
+判定結果をbooleanで返す。
+
+[source(JDK1.8_11)](./Predicate.java)
+
+```java
+
+Predicate<String> p = s -> s.isEmpty();
+
+```
+
+--
+
+## Function
+
+値を変換する関数。
+引数を別の値に変換して返す。
+
+[source(JDK1.8_11)](./Function.java)
+
+```java
+
+Function<String, File> f = s -> new File("/tmp", s);
+
+```
+
+--
+
+## UnaryOperator
+
+単項演算子を表す関数。
+引数に演算を行い、同じ型の値を返す。（特殊なFunction）
+
+[source(JDK1.8_11)](./UnaryOperator.java)
+
+```java
+
+UnaryOperator<String> op = s -> s.toUpperCase();
+
+```
+
+--
+
+## BinaryOperator
+
+二項演算子を表す関数。
+同じ型の2つの引数を受け取り、同じ型の値を返す。
+
+[source(JDK1.8_11)](./BinaryOperator.java)
+
+```java
+
+BinaryOperator<String> op = (s1, s2) -> s1 + s2;
+
+```
+
+--
 
 ### Tips
 
-* 順番を入れ替える系はCollections, Arraysに入っている
-	- 例えば、`sort`の実装を読んでみるとわかる
+* 関数型言語では `func(element, func2)` などのように、関数を引数として扱えるが、
+Javaだとできないので、 `func(element, Predicate)` のようになる。
 
---
+* 例ではラムダ式を使ったが、使わずに書くとこんな感じ。
+
+```java
+
+Predicate<String> p = new Predicate<String>(){
+	
+	@override
+	public boolean test(String t){
+		return t.isEmpty();
+	}
+}
+
+```
+
+---
+
+## streamクラスのメソッド
 
 
 
