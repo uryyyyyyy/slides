@@ -24,7 +24,9 @@
 
 関数型インターフェースを実装した無名クラスの宣言のsyntax-sugar
 
-めっちゃ簡単に書けるよ
+（厳密には、より最適化されるらしい。→[@IT](http://www.atmarkit.co.jp/ait/articles/1403/17/news105_2.html), [社内Java8勉強会 by池添さん](http://www.slideshare.net/zoetrope/java8-lambdaandstream)）
+
+簡単に書けるし効率良いので、とりあえずラムダ式使うべし。
 
 ```java
 
@@ -68,7 +70,7 @@
 メソッド定義をひとつだけ持ったインターフェース。
 ラムダ式やメソッド参照の代入先になる。
 
-Javaだと関数が単体で（ファーストクラスとして）存在できないため、
+Javaだと関数が単体で（オブジェクトとして）存在できないため、
 メソッドを一つだけ持ったクラスで対応している。
 
 **@FunctionalInterface**がついてるハズ。
