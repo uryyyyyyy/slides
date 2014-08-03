@@ -24,10 +24,18 @@
 
 関数型インターフェースを実装した無名クラスの宣言のsyntax-sugar
 
-めっちゃ簡単に書けるよ
+めっちゃ簡単に書けるよ。（型推論もしてくれるよ。）
 
 ```java
 
+Predicate<String> p = new Predicate<String>(){
+	@override
+	public boolean test(String s){
+		return s.isEmpty();
+	}
+}
+
+Predicate<String> p = s -> s.isEmpty();
 
 ```
 
@@ -37,7 +45,8 @@
 
 処理を宣言的に（簡単に）書けるため、
 
-* 最適化（並列化）しやすい。（内部で勝手にやってくれる）
+* 最適化（並列化）しやすい。
+	- （内部で勝手にやってくれる）
 * バグりにくい
 * 読みやすい
 * 書くのが楽
@@ -105,6 +114,8 @@ Consumer<String> c = s -> System.out.println(s);
 
 ```
 
+引数を２つ受け取る`BiConsumer`もある。
+
 --
 
 ## Predicate
@@ -169,28 +180,132 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 ### Tips
 
-* 関数型言語では `func(element, func2)` などのように、関数を引数として扱えるが、
-Javaだとできないので、 `func(element, Predicate)` のようになる。
+昔からあるComparatorにも@FunctionalInterfaceがついてる。
 
-* 例ではラムダ式を使ったが、使わずに書くとこんな感じ。
+[source(JDK1.8_11)](./Comparator.java)
 
-```java
+### Q
 
-Predicate<String> p = new Predicate<String>(){
-	
-	@override
-	public boolean test(String t){
-		return t.isEmpty();
-	}
-}
+* 覚えるだけだと思う。
 
-```
 
 ---
 
 ## streamクラスのメソッド
 
+全体が知りたければココを読むべし。これだけで十分。
 
+[hishidama](http://www.ne.jp/asahi/hishidama/home/tech/java/stream.html)
+
+ひと通り調べてみる。
+
+マルチコア時代になり、プログラムの方でも並列化できるように書く必要性が出てきたのでは。
+（特に、一台のスーパーマシンでなく複数のサーバーで平行稼働させたい場合など。）
+
+--
+
+
+--
+
+
+
+---
+
+## Collect処理
+
+[Collectorを征す者はStream APIを征す（部分的に）](http://blog.exoego.net/2013/12/control-collector-to-rule-stream-api.html)
+
+なぜ必要か。
+
+関数型であれば標準でできることが、Javaだとできない（最適化されず遅い）ので、
+ここの中で上手いことやってくれる（実装は知らなくてもいい）。
+
+
+--
+
+## collect
+
+末端処理（Streamから普通のオブジェクトに戻す処理）を行う。
+
+`Stream#collect(Supplier<R> supplier, BiConsumer<R,? super T> accumulator, BiConsumer<R,R> combiner) <R> R`
+
+SupplierもBiConsumerも既に登場しましたよね。返り値は`<R>`のようです。
+
+中の処理は、Supplierで作られた`<R>`のインスタンスに、Streamから来た要素`<T>`を
+accumulatorで処理していくようです。
+
+（たぶん並行処理したいときに`combiner`で、あるスレッドで作られた`<R>`と、別のスレッドで作られた`<R>`を合成している。）
+
+--
+
+## 例
+
+```java
+
+	List<String> list = Stream.of("a", "b", "c").collect(
+				() -> new ArrayList<>(10), 
+				(l, t) -> l.add(t), 
+				(l1, l2) -> l1.addAll(l2));
+	System.out.println(list); 
+	//a
+	//b
+	//c
+
+```
+
+supplierでインスタンス(`List<String>`）に、Streamから来た要素(String)をAccumulatorで処理（(l, t)のlがList, tが要素。返り値はないがlistに蓄積）している。
+
+もしListが複数できちゃったら、combinerでまとめる。
+
+--
+
+## Collectors
+
+> 要素をコレクションに蓄積したり、さまざまな条件に従って要素を要約するなど、有用な各種リダクション操作を実装したCollector実装。
+
+> [JavaSE8-API](http://docs.oracle.com/javase/jp/8/api/java/util/stream/Collectors.html)
+
+[使い方](http://www.ne.jp/asahi/hishidama/home/tech/java/collector.html)
+
+--
+
+### 汎用メソッド
+
+counting()
+→入力要素の数をカウントする
+
+groupingBy(Function<? super T,? extends K> classifier)
+-> classifierの結果が同じものをgroup化したMapを返す。追加処理も書けるよ。
+
+joining()
+→ 流れてきた要素を全てStringで連結して一つにする。
+
+ToCollection(Supplier<C> collectionFactory)
+→ StreamをCollectionに変換する（toList, toMapなどもある。）
+
+--
+
+## その他
+
+（代替できるので覚えなくていいかも。
+最適化されてるっぽいので、どうしても遅いなら検討する程度で。）
+
+collectingAndThen → Stream#collect()・Function。
+
+summingLong → Stream#mapToLong()・LongStream#sum()
+
+summarizingLong() → Stream#mapToLong()・LongStream#summaryStatistics()
+
+maxBy() → Stream#max()
+
+reducing() → Stream#reduce()
+
+
+---
+
+その他
+
+無限リスト・遅延評価
 
 
 ---
