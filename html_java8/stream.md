@@ -44,10 +44,6 @@ Javaだと関数が単体で（オブジェクトとして）存在できない�
 
 java.util.function以下にたくさん入ってる。
 
-* Predicate
-* Function
-* Supplier etc...
-
 --
 
 ## Supplier
@@ -189,9 +185,7 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 などの利点がある。
 
-特にマルチコア時代になり、プログラムの方でも並列化できるように書く必要性が出てきた。
-（特に、一台のスーパーマシンでなく複数のサーバーで平行稼働させたい場合など。）
-
+マルチコア時代になり、プログラムの方でも並列化できるように書く必要性が出てきた。
 
 --
 
@@ -200,11 +194,6 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 全体が知りたければココを読むべし。これだけで十分かと。
 
 [hishidama](http://www.ne.jp/asahi/hishidama/home/tech/java/stream.html)
-
-- map
-- filter
-- flatMap
-- forEach etc...
 
 --
 
@@ -221,6 +210,8 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 * `filter(Predicate<? super T> predicate)`
 	- Predicateの結果がtrueになる要素だけで構成されるStreamを返す。
+
+--
 
 * `forEach(Consumer<? super T> action)`
 	- 各要素をCounsumerに流し込む（Counsumerの返り値はvoid）
@@ -251,10 +242,10 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 [Collectorを征す者はStream APIを征す（部分的に）](http://blog.exoego.net/2013/12/control-collector-to-rule-stream-api.html)
 
-なぜ必要か。
+### なぜ必要か。
 
-関数型であれば標準でできることが、Javaだとできない（最適化されず遅い）ので、
-ここの中で上手いことやってくれる（実装は知らなくてもいい）。
+関数型であれば標準でできることがJavaだとやりにくい（最適化されず遅い）ので、
+Collectの中で上手いことやってくれる（実装は知らなくてもいい）。
 
 
 --
@@ -287,9 +278,9 @@ accumulatorで処理していくようです。
 
 ```
 
-supplierでインスタンス(`List<String>`）に、Streamから来た要素(String)をAccumulatorで処理
+supplierでインスタンス(`List<String>`）に、Streamから来た要素(String)をAccumulatorで処理している。
 
-（(l, t)のlがList, tが要素。返り値はないがlistに蓄積）している。
+（(l, t)のlがList, tが要素(String)。返り値はないがlistに蓄積）
 
 もしListが複数出来たら、combinerでまとめる。
 
@@ -356,3 +347,5 @@ supplierでインスタンス(`List<String>`）に、Streamから来た要素(St
 > [http://livedoor.4.blogimg.jp/](http://livedoor.4.blogimg.jp/chihhylove/imgs/6/f/6f0e791f.jpg)
 
 ---
+
+* [Date & Time API](./date_time.html)
