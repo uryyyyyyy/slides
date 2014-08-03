@@ -1,24 +1,13 @@
-## StreamAPI
+## 目次
 
-> 順次および並列の集約操作をサポートする要素のシーケンスです。
-[JavaAPI](http://docs.oracle.com/javase/jp/8/api/java/util/stream/Stream.html)
+* ラムダ式とは
+* 関数型インターフェース
+* streamAPI
+* Collect処理
 
-![alt](./stream_1.png)
+[Plain Text](./stream.md)
 
-> [1st8](http://www.first8.nl/presentations/java8/#/3/1)
-
-（primitive型用のIntStreamなどもありますが、まぁ同じものです。）
-
---
-
-> Streamの値の持ち方はjava.util.Listのようなイメージ。
-
-> * なお、Streamはコレクションフレームワーク（List・Queue・Set・MapやCollectionsクラス等）の一員ではない。
-> * また、java.io.InputStreamやjava.io.OutputStreamやPrintStream等とは（名前が似ている以外の）何の関係も無い。
-
-> [hishidama](http://www.ne.jp/asahi/hishidama/home/tech/java/stream.html)
-
---
+---
 
 ## ラムダ式
 
@@ -30,6 +19,7 @@
 
 ```java
 
+// こんなのが
 Predicate<String> p = new Predicate<String>(){
 	@override
 	public boolean test(String s){
@@ -37,54 +27,26 @@ Predicate<String> p = new Predicate<String>(){
 	}
 }
 
+// こう書ける！
 Predicate<String> p = s -> s.isEmpty();
 
 ```
-
---
-
-## 何が嬉しいの？
-
-処理を宣言的に（簡単に）書けるため、
-
-* 最適化（並列化）しやすい。
-	- （内部で勝手にやってくれる）
-* バグりにくい
-* 読みやすい
-* 書くのが楽
-
-などの利点がある。
-
---
-
-## 目次
-
-* 関数型インターフェース
-	- Predicate
-	- Function
-	- Supplier etc...
-* streamクラスのメソッド
-	- map
-	- filter
-	- flatMap
-	- forEach etc...
-* Collect処理
-	- groupingBy
-	- toList etc...
 
 ---
 
 ## 関数型インターフェース
 
-メソッド定義をひとつだけ持ったインターフェース。
+メソッド定義をひとつだけ持ったインターフェース。**@FunctionalInterface**がついてる。
 ラムダ式やメソッド参照の代入先になる。
 
 Javaだと関数が単体で（オブジェクトとして）存在できないため、
 メソッドを一つだけ持ったクラスで対応している。
 
-**@FunctionalInterface**がついてるハズ。
-
 java.util.function以下にたくさん入ってる。
+
+	- Predicate
+	- Function
+	- Supplier etc...
 
 --
 
@@ -188,21 +150,63 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 ### Q
 
-* 覚えるだけだと思う。
-
+* 何かありますか？
+* ここについては覚えるだけだと思います。
 
 ---
 
-## streamクラスのメソッド
+## StreamAPI
 
-全体が知りたければココを読むべし。これだけで十分。
+> 順次および並列の集約操作をサポートする要素のシーケンスです。
+[JavaAPI](http://docs.oracle.com/javase/jp/8/api/java/util/stream/Stream.html)
+
+（primitive型用のIntStreamなどもあります。）
+
+![alt](./stream_1.png)
+
+> [1st8](http://www.first8.nl/presentations/java8/#/3/1)
+
+--
+
+> Streamの値の持ち方はjava.util.Listのようなイメージ。
+
+> * なお、Streamはコレクションフレームワーク（List・Queue・Set・MapやCollectionsクラス等）の一員ではない。
+> * また、java.io.InputStreamやjava.io.OutputStreamやPrintStream等とは（名前が似ている以外の）何の関係も無い。
+
+> [hishidama](http://www.ne.jp/asahi/hishidama/home/tech/java/stream.html)
+
+--
+
+## 何が嬉しいの？
+
+処理を宣言的に（簡単に）書けるため、
+
+* 自動で最適化（並列化）される。
+	- （内部で勝手にやってくれる）
+* バグりにくい
+* 読みやすい
+* 書くのが楽
+
+などの利点がある。
+
+特にマルチコア時代になり、プログラムの方でも並列化できるように書く必要性が出てきた。
+（特に、一台のスーパーマシンでなく複数のサーバーで平行稼働させたい場合など。）
+
+が、今までの手続き的なプログラムでは並列化はすごく難しいので、詳細は隠して内部でよろしくやってくれる。
+
+
+--
+
+## streamAPIのメソッド
+
+全体が知りたければココを読むべし。これだけで十分かと。
 
 [hishidama](http://www.ne.jp/asahi/hishidama/home/tech/java/stream.html)
 
-ひと通り調べてみる。
-
-マルチコア時代になり、プログラムの方でも並列化できるように書く必要性が出てきたのでは。
-（特に、一台のスーパーマシンでなく複数のサーバーで平行稼働させたい場合など。）
+	- map
+	- filter
+	- flatMap
+	- forEach etc...
 
 --
 
@@ -231,8 +235,6 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 `Stream#collect(Supplier<R> supplier, BiConsumer<R,? super T> accumulator, BiConsumer<R,R> combiner) <R> R`
 
-SupplierもBiConsumerも既に登場しましたよね。返り値は`<R>`のようです。
-
 中の処理は、Supplierで作られた`<R>`のインスタンスに、Streamから来た要素`<T>`を
 accumulatorで処理していくようです。
 
@@ -255,9 +257,19 @@ accumulatorで処理していくようです。
 
 ```
 
-supplierでインスタンス(`List<String>`）に、Streamから来た要素(String)をAccumulatorで処理（(l, t)のlがList, tが要素。返り値はないがlistに蓄積）している。
+supplierでインスタンス(`List<String>`）に、Streamから来た要素(String)をAccumulatorで処理
 
-もしListが複数できちゃったら、combinerでまとめる。
+（(l, t)のlがList, tが要素。返り値はないがlistに蓄積）している。
+
+もしListが複数出来たら、combinerでまとめる。
+
+--
+
+これでバッチリ！
+
+といっても、一般的な処理を毎回書くのはダルい。。。
+
+そこで、
 
 --
 
@@ -273,17 +285,17 @@ supplierでインスタンス(`List<String>`）に、Streamから来た要素(St
 
 ### 汎用メソッド
 
-counting()
-→入力要素の数をカウントする
+* counting()
+	- 入力要素の数をカウントする
 
-groupingBy(Function<? super T,? extends K> classifier)
--> classifierの結果が同じものをgroup化したMapを返す。追加処理も書けるよ。
+* groupingBy(Function<? super T,? extends K> classifier)
+	- classifierの結果が同じものをgroup化したMapを返す。追加処理も書けるよ。
 
-joining()
-→ 流れてきた要素を全てStringで連結して一つにする。
+* joining()
+	- 流れてきた要素を全てStringで連結して一つにする。
 
-ToCollection(Supplier<C> collectionFactory)
-→ StreamをCollectionに変換する（toList, toMapなどもある。）
+* ToCollection(Supplier<C> collectionFactory)
+	- StreamをCollectionに変換する（toList, toMapなどもある。）
 
 --
 
@@ -292,23 +304,24 @@ ToCollection(Supplier<C> collectionFactory)
 （代替できるので覚えなくていいかも。
 最適化されてるっぽいので、どうしても遅いなら検討する程度で。）
 
-collectingAndThen → Stream#collect()・Function。
+* collectingAndThen → Stream#collect()・Function。
 
-summingLong → Stream#mapToLong()・LongStream#sum()
+* summingLong → Stream#mapToLong()・LongStream#sum()
 
-summarizingLong() → Stream#mapToLong()・LongStream#summaryStatistics()
+* summarizingLong() → Stream#mapToLong()・LongStream#summaryStatistics()
 
-maxBy() → Stream#max()
+* maxBy() → Stream#max()
 
-reducing() → Stream#reduce()
+* reducing() → Stream#reduce()
 
 
 ---
 
-その他
+### Tips
 
-無限リスト・遅延評価
+* 無限リスト・遅延評価(stream#generate(), stream#limit())
 
+### Q
 
 ---
 
