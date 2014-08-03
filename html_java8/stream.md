@@ -44,9 +44,9 @@ Javaだと関数が単体で（オブジェクトとして）存在できない�
 
 java.util.function以下にたくさん入ってる。
 
-	- Predicate
-	- Function
-	- Supplier etc...
+* Predicate
+* Function
+* Supplier etc...
 
 --
 
@@ -192,8 +192,6 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 特にマルチコア時代になり、プログラムの方でも並列化できるように書く必要性が出てきた。
 （特に、一台のスーパーマシンでなく複数のサーバーで平行稼働させたい場合など。）
 
-が、今までの手続き的なプログラムでは並列化はすごく難しいので、詳細は隠して内部でよろしくやってくれる。
-
 
 --
 
@@ -203,16 +201,48 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 [hishidama](http://www.ne.jp/asahi/hishidama/home/tech/java/stream.html)
 
-	- map
-	- filter
-	- flatMap
-	- forEach etc...
+- map
+- filter
+- flatMap
+- forEach etc...
 
 --
 
+## 汎用メソッド
+
+* `allMatch(Predicate<? super T> predicate)`
+	- すべての要素においてPredicateの結果がtrueになるかどうか。
+
+* `concat(Stream<? extends T> a, Stream<? extends T> b)`
+	- ２つのStreamを合成する。両方ともTを継承している型であること。
+
+* `distinct()`
+	- 要素の重複を除いたStreamを返す（Object#equals()で比較）。
+
+* `filter(Predicate<? super T> predicate)`
+	- Predicateの結果がtrueになる要素だけで構成されるStreamを返す。
+
+* `forEach(Consumer<? super T> action)`
+	- 各要素をCounsumerに流し込む（Counsumerの返り値はvoid）
+
+* `map(Function<? super T,? extends R> mapper)`
+	- 各要素をFunctionに入れて、出てきた要素でStreamを作る。
+
+* `flatMap(Function<? super T,? extends Stream<? extends R>> mapper)`
+	- Streamの各要素のStreamを一つのStreamにまとめる。
 
 --
 
+### Tips
+
+* 引数の関数型インターフェースを理解してれば、各メソッドの動作は想像つくと思う。
+* Primitive型は`<T>`に入らないので別メソッドで区別している。（mapToInt()とか）
+* これらを使いこなせばfor文は駆逐できる！（らしい）
+
+### Q
+
+* for文じゃなきゃ対応できない例を挙げよ。
+* それに対して反論せよ。
 
 
 ---
@@ -285,9 +315,6 @@ supplierでインスタンス(`List<String>`）に、Streamから来た要素(St
 
 ### 汎用メソッド
 
-* counting()
-	- 入力要素の数をカウントする
-
 * groupingBy(Function<? super T,? extends K> classifier)
 	- classifierの結果が同じものをgroup化したMapを返す。追加処理も書けるよ。
 
@@ -305,14 +332,11 @@ supplierでインスタンス(`List<String>`）に、Streamから来た要素(St
 最適化されてるっぽいので、どうしても遅いなら検討する程度で。）
 
 * collectingAndThen → Stream#collect()・Function。
-
 * summingLong → Stream#mapToLong()・LongStream#sum()
-
 * summarizingLong() → Stream#mapToLong()・LongStream#summaryStatistics()
-
 * maxBy() → Stream#max()
-
 * reducing() → Stream#reduce()
+* counting() → Stream#count()
 
 
 ---
