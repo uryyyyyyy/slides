@@ -5,8 +5,6 @@
 * streamAPI
 * Collect処理
 
-[Plain Text](./stream.md)
-
 ---
 
 ## ラムダ式
