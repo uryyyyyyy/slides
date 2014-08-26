@@ -25,25 +25,20 @@
 
 ## 知っておくべき概念
 
-Locale
-
-TimeZone
-
-グレゴリオ暦/ユリウス暦
-
-GMT（Greenwich Mean Time）/UTC（Universal Time, Coordinated）
+* Locale
+* TimeZone
+* グレゴリオ暦/ユリウス暦
+* GMT（Greenwich Mean Time）/UTC（Universal Time, Coordinated）
 
 ---
 
 ## 〜java1.7
 
-Date
-Calender
-DateFormat
+* Date
+* Calender
+* DateFormat
 
-日付を表すのがDateで、その計算を行うのがCalender
-
-mutableで汎用性に欠けるらしい
+日付を表すのがDateで、その計算を行うのがCalender。parseなどはDateFormat
 
 --
 
@@ -76,6 +71,8 @@ mutableで汎用性に欠けるらしい
 * DateFormatがスレッドセーフでない
 * 状態が可変でややこしい
 
+　
+
 などなど。
 
 ---
@@ -84,21 +81,24 @@ mutableで汎用性に欠けるらしい
 
 > いままでのJavaでは、日付時刻を扱おうとするとめんどくさい割に非常に低機能でした。
 Java8では、新たに日付時刻APIが導入され、めんどくささが増しつつ非常に高機能になりました。
-
 [きしだのはてな](http://d.hatena.ne.jp/nowokay/20130917)
 
-日時の生成・計算・表示が簡単になった
+　
+
+日時の生成・計算・表示が高機能になった
 
 --
 
 ## Date&Time API
 
-* LocalDateTime→タイムゾーンを持たない日時（Dateのみ、Timeのみも） // 2014-08-08T10:11:30
-* OffsetDateTime→UTCからの時差を持つ日時（Timeのみも） // 2014-08-08T10:11:30-09:00
+* LocalDateTime→タイムゾーンを持たない日時// 2014-08-08T10:11:30
+* OffsetDateTime→UTCからの時差を持つ日時// 2014-08-08T10:11:30-09:00
 * ZonedDateTime→タイムゾーンを持つ日時 // 2014-08-08T10:11:30-09:00 Japan/Tokyo
 * Duration→時間単位の期間 // PT3600S
 * Period→日付単位の期間 // P1Y2M3D
 * JapaneseDate→和暦
+
+　
 
 とりあえず〜〜DateTimeを使えばいいと思うよ。
 
@@ -145,6 +145,8 @@ OffsetDateTimeよりもZonedDateTimeを使えばいいじゃん。
 * 日付だけ、日時だけ、とかを選べる。
 * ZonedDateTimeは、サマータイムとかも管理してるっぽい。
 
+　
+
 実例はコードの方で。
 
 ---
@@ -174,11 +176,3 @@ OffsetDateTimeよりもZonedDateTimeを使えばいいじゃん。
 
 ---
 
-
-## 参考文献
-
-
-http://shinsuke789.hatenablog.jp/entry/2013/08/05/120042
-http://shinsuke789.hatenablog.jp/entry/2013/08/06/195436
-
-http://acro-engineer.hatenablog.com/entry/20130213/1360691391
