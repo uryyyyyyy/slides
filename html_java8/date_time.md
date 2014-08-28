@@ -192,5 +192,3 @@ Duration Periodの計算はこんなことができる。
 
 > [ニコニコ静画](http://seiga.nicovideo.jp/seiga/im785518)
 
----
-
