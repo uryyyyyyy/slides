@@ -2,9 +2,8 @@
 ## 目次
 
 * 日付系の難しさ
+* 〜java7
 * DateTimeAPIとは？
-* 〜Java1.7との違い
-* 詳解
 * おまけ：JodaTime紹介
 
 ---
@@ -26,13 +25,18 @@
 ## 知っておくべき概念
 
 * Locale
+	- 時刻に限らず、その地域・国独特の表現などに対応させる指標。
 * TimeZone
+	- UTCからの時差がどのくらいか（日本なら＋９）
 * グレゴリオ暦/ユリウス暦
-* GMT（Greenwich Mean Time）/UTC（Universal Time, Coordinated）
+	- ユリウス暦はうるう年がざっくり。グレゴリオ歴はもっと正確。
+* GMT/UTC
+	- GMTはグリニッジの時間。UTCはもっと厳密なやつ。普通はUTC
+
 
 ---
 
-## 〜java1.7
+## 〜java7
 
 * Date
 * Calender
@@ -131,10 +135,26 @@ OffsetDateTimeよりもZonedDateTimeを使えばいいじゃん。
 
 --
 
+## イメージ図
+
+Duration Periodの計算はこんなことができる。
+
+![./file/duration.png]
+
+
+--
+
 ## JapaneseDate
 
 > この日付は和暦を使用して、運用されます。この暦体系は主に日本で使用されています。
 [JavaAPI](http://docs.oracle.com/javase/jp/8/api/java/time/chrono/JapaneseDate.html) -  [Web(openjdk-8)](http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8-b132/java/time/chrono/JapaneseDate.java?av=f) - [Row(JDK1.8_11)](./JapaneseDate.java)
+
+### Tips（by大嶋さん）
+
+* 日本は明治6年からグレゴリオ歴を採用した模様。[リンク](http://www.kumamotokokufu-h.ed.jp/kumamoto/bungaku/wa_seireki.html)
+	- そのため、明治６年以前の日付は正確に取れないためエラーになる。
+
+* 昭和64年と平成１年とかをちゃんと管理している（〜1989/1/7が昭和）
 
 --
 
@@ -151,9 +171,7 @@ OffsetDateTimeよりもZonedDateTimeを使えばいいじゃん。
 
 ---
 
-ちょっと寄り道
-
-## Joda-Time
+## オマケ：Joda-Time
 
 --
 
