@@ -139,7 +139,7 @@ OffsetDateTimeよりもZonedDateTimeを使えばいいじゃん。
 
 Duration Periodの計算はこんなことができる。
 
-![./file/duration.png]
+![alt](./file/duration.png)
 
 
 --
