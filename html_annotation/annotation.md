@@ -2,7 +2,7 @@
 ## 目次
 
 * アノテーションとは？
-* 定義の仕方
+* 定義の仕方・使い方
 * 標準アノテーション
 * ライブラリのアノテーション
 
@@ -12,6 +12,7 @@
 
 ソースコードにメタ情報を仕込むことで、開発者やコンパイラ、実行環境に対して、そのコードの意図を伝えるもの。
 
+　
 
 標準で組み込まれているもの
 
@@ -35,19 +36,21 @@
 
 （マーカーとして利用する場合）
 
+　
+
 ### Interface
 
 * コンパイル時にチェックされる。
 * 型安全が保証される
 * 実装に依存する
 
+　
 
 ### アノテーション
 
 * 実行時にチェックされる。
 * 型安全でない。
-* 実装に依存しないため、プラグインなどと分離しやすい。
-
+* 実装に依存しないため分離しやすい。
 
 --
 
@@ -56,9 +59,11 @@
 * 構文補助
 * 宣言的プログラミング（このコードは何の分類かを明記できる。）
 
+　
+
 〜Java1.4では、命名パターンでチェックしたりしていた。（JUnit3.Xなど）
 
-これでは正確じゃないし、間違ってるのかどうなのかわかりにくかった。
+これでは正確じゃないし、間違ってるのかどうなのかわかりにくかったので、メタ情報として明示するようにした。
 
 Spring4やJUnit４でも使われている。
 
@@ -66,11 +71,17 @@ Spring4やJUnit４でも使われている。
 
 ## 定義の仕方・使い方
 
-[自作テストランナー](https://github.com/uryyyyyyy/JavaStudy/blob/master/src/study/annotation/execute/TestRunner.java)
+* [JUnitの例](https://github.com/junit-team/junit/blob/master/src/main/java/org/junit/Test.java)
 
-[JUnitの例](https://github.com/junit-team/junit/blob/master/src/main/java/org/junit/Test.java)
+* [Lombokの例](https://github.com/rzwitserloot/lombok/blob/master/src/core/lombok/Value.java)
 
-[Lombokの例](https://github.com/rzwitserloot/lombok/blob/master/src/core/lombok/Value.java)
+ただ定義してるだけ。裏でどう動いているかは別のところを見ないといけない。
+
+　
+
+* [自作テストランナー](https://github.com/uryyyyyyy/JavaStudy/blob/master/src/study/annotation/execute/TestRunner.java)
+
+裏でどう動いているかのサンプル。
 
 ---
 
@@ -86,7 +97,7 @@ Spring4やJUnit４でも使われている。
 
 --
 
-## 自作アノテーション用
+## 自作用アノテーション
 
 * Target
 * Retention
@@ -150,12 +161,12 @@ Javadoc関連のアノテーション
 
 あんまり興味ない
 
---- 
+---
 
 ## reference
 
-EffectiveJava
+* EffectiveJava
 
-Perfect Java
+* Perfect Java
 
-http://komaken.me/blog/2013/03/13/java%E3%81%AE%E3%82%A2%E3%83%8E%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BE%BF%E5%88%A9%E3%81%99%E3%81%8E%E3%83%AF%E3%83%AD%E3%82%BF%EF%BD%97%EF%BD%97%EF%BD%97%EF%BD%97%E3%82%92%E3%81%97/
+* [Javaのアノテーション便利すぎワロタｗｗをしたいので総復習したけどワロエナイ](http://komaken.me/blog/2013/03/13/java%E3%81%AE%E3%82%A2%E3%83%8E%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BE%BF%E5%88%A9%E3%81%99%E3%81%8E%E3%83%AF%E3%83%AD%E3%82%BF%EF%BD%97%EF%BD%97%EF%BD%97%EF%BD%97%E3%82%92%E3%81%97/)
