@@ -159,7 +159,15 @@ Javadoc関連のアノテーション
 * @exception
 * @see
 
-あんまり興味ない
+あんまり興味ない。
+
+---
+
+## Any Question?
+
+![alt](./file/kiniiranai.jpg)
+
+> [やらおん](http://blog-imgs-64.fc2.com.yaraon-proxy2.yarareyaku.net/y/a/r/yaraon/oo_20140519004812630.jpg)
 
 ---
 
@@ -170,3 +178,16 @@ Javadoc関連のアノテーション
 * Perfect Java
 
 * [Javaのアノテーション便利すぎワロタｗｗをしたいので総復習したけどワロエナイ](http://komaken.me/blog/2013/03/13/java%E3%81%AE%E3%82%A2%E3%83%8E%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BE%BF%E5%88%A9%E3%81%99%E3%81%8E%E3%83%AF%E3%83%AD%E3%82%BF%EF%BD%97%EF%BD%97%EF%BD%97%EF%BD%97%E3%82%92%E3%81%97/)
+
+* [アノテーション作成方法](http://www.ne.jp/asahi/hishidama/home/tech/java/annotation.html)
+
+---
+
+## Next
+
+JUnitかLombokのコード読みたい。
+
+
+Lombokはハードル高そう。。。
+
+http://stackoverflow.com/questions/20876101/how-to-read-the-source-of-lombok
