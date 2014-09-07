@@ -17,14 +17,44 @@
 
 * JavaDoc
 * Override
-* SupppressWarnings
+* SuppressWarnings
 * Depricated
 
 --
 
-### 普通のコードとは違うの？
+## 普通のコードとは違うの？
 
-よりストレートに開発者の意図を伝えられる。
+
+* Interfaceとの違い
+
+* 命名規則との違い
+
+--
+
+## Interfaceとの違い
+
+（マーカーとして利用する場合）
+
+### Interface
+
+* コンパイル時にチェックされる。
+* 型安全が保証される
+* 実装に依存する
+
+
+### アノテーション
+
+* 実行時にチェックされる。
+* 型安全でない。
+* 実装に依存しないため、プラグインなどと分離しやすい。
+
+
+--
+
+## 命名規則との違い
+
+* 構文補助
+* 宣言的プログラミング（このコードは何の分類かを明記できる。）
 
 〜Java1.4では、命名パターンでチェックしたりしていた。（JUnit3.Xなど）
 
@@ -32,77 +62,77 @@
 
 Spring4やJUnit４でも使われている。
 
---
-
-### 使うとどう便利になるの？
-
-マーカーをつけておくことで、裏で対象のコードを見つけるのが容易になる。
-
-例：[自作テストユニット](https://github.com/uryyyyyyy/JavaStudy/tree/master/src/study/annotation)
-
 ---
 
 ## 定義の仕方・使い方
 
-コードを参照。
+[自作テストランナー](https://github.com/uryyyyyyy/JavaStudy/blob/master/src/study/annotation/execute/TestRunner.java)
 
+[JUnitの例](https://github.com/junit-team/junit/blob/master/src/main/java/org/junit/Test.java)
+
+[Lombokの例](https://github.com/rzwitserloot/lombok/blob/master/src/core/lombok/Value.java)
 
 ---
 
 ## 標準アノテーション
 
---
+たぶん知ってると思うので省略します。
 
-## SuppressWarnings
+* SuppressWarnings
+* Depricated
+* Override
 
-警告を隠す
-
-使うべきでないが、やむを得ない場合でも理由は明記するべき。
-
---
-
-## Depricated
-
-警告を隠す
-
-使うべきでないが、やむを得ない場合でも理由は明記するべき。
+（コード上ではただ定義してるだけです。裏でどう動いているかはよくわかりませんでした。）
 
 --
 
-## Override
+## 自作アノテーション用
 
-もしオーバーライドできてなかったときにエラーを吐いてくれる(引数が違うとか名前間違えたとか。)
+* Target
+* Retention
+* Documented
+* Inherited
 
+--
 
----
+## Target
 
-## メタアノテーション
+> 注釈型が適用可能なプログラム要素の種類を示します。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/lang/annotation/Target.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/lang/annotation/Target.java.html) - [Row(JDK1.7_60)](./Target.java)
 
-普通は使わないので省略（フレームワーク系か、リフレクション呼びたいときなど）
+[使用例](https://github.com/uryyyyyyy/JavaStudy/blob/master/src/study/annotation/marker/PlaceAnnotation.java)
 
-* @Retention
-* @Target
-* @Inherited
-* @Documented
+Target自身にも`@Target(ElementType.ANNOTATION_TYPE)`がついてる。
 
----
+--
 
-## マーカの使いドコロとInterfaceとの比較
+## Retention
 
-Interface
-コンパイル時にチェックされる。
-型安全が保証される
-実装に依存する
+> 注釈付きの型を持つ注釈を保持する期間を示します。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/lang/annotation/Retention.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/lang/annotation/Retention.java.html) - [Row(JDK1.7_60)](./Retention.java)
 
+[使用例](https://github.com/uryyyyyyy/JavaStudy/blob/master/src/study/annotation/marker/ScopeAnnotation.java)
 
-アノテーション
-実行時にチェックされる。
-型安全でない。
-実装に依存しないため、プラグインなどと分離しやすい。
+JUnitではRuntimeで、LombokではSourceで定義されている様子。
 
+--
 
-* 構文補助
-* 宣言的プログラミング（このコードは何の分類かを明記できる。）
+## Documented
+
+> 型を持つ注釈が javadoc および同様のツールによってデフォルトでドキュメント化されることを示します。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/lang/annotation/Documented.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/lang/annotation/Documented.java.html) - [Row(JDK1.7_60)](./Documented.java)
+
+よくわかってない。
+
+--
+
+## Inherited
+
+> 注釈型が自動的に継承されることを示します。
+[JavaAPI](http://docs.oracle.com/javase/jp/7/api/java/lang/annotation/Inherited.html) - [Web(openjdk-7)](http://www.docjar.com/html/api/java/lang/annotation/Inherited.java.html) - [Row(JDK1.7_60)](./Inherited.java)
+
+使い方わからない。[Sample](https://github.com/uryyyyyyy/JavaStudy/blob/master/src/study/annotation/marker/InheritedAnnotation.java)
+
 
 ---
 
@@ -118,11 +148,14 @@ Javadoc関連のアノテーション
 * @exception
 * @see
 
-http://www.docjar.com/html/api/java/lang/Override.java.html
-
+あんまり興味ない
 
 --- 
 
 ## reference
+
+EffectiveJava
+
+Perfect Java
 
 http://komaken.me/blog/2013/03/13/java%E3%81%AE%E3%82%A2%E3%83%8E%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BE%BF%E5%88%A9%E3%81%99%E3%81%8E%E3%83%AF%E3%83%AD%E3%82%BF%EF%BD%97%EF%BD%97%EF%BD%97%EF%BD%97%E3%82%92%E3%81%97/
