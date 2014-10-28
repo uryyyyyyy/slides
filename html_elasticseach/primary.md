@@ -139,7 +139,7 @@ elasticsearch向けにAnalyzerやtokenizerを提供しているみたい。
 
 の二種類がある。
 
-デフォルトではelasticsearchというクラスタが立ち上がる。node名はランダム。
+デフォルトではelasticsearchというClusterが立ち上がる。node名はランダム。
 
 変更したい場合は起動オプションか設定ファイルを編集。
 
@@ -154,6 +154,38 @@ elasticsearch向けにAnalyzerやtokenizerを提供しているみたい。
 Cluster内にある個々のサーバを指す。
 
 RDBで言うDBサーバに相当。
+
+--
+
+## Shard
+
+ドキュメントを複数のサーバに分散させること。
+
+これによって一台のマシンではスペックが足りないデータ量・高負荷も処理できる。
+
+elasticsearchは、クライアント側がシャードを意識しなくても使えるように隠蔽している。
+
+RDBのシャードに相当
+
+--
+
+## Replica
+
+PrimaryNodeの完全なコピーをする。
+これによって並列処理・バックアップが可能になる。
+
+PrimaryNodeが死んだ場合、クラスタはReplicaから新しいPrimaryNodeを選ぶ。
+
+--
+
+## 図解
+
+Sharding & replica
+
+![alt](./image/replica.png)
+
+http://blog.liip.ch/archive/2013/07/19/on-elasticsearch-performance.html
+
 
 --
 
@@ -193,31 +225,20 @@ RDBのカラムに相当。
 
 --
 
-## Shard
+## 図解
 
-ドキュメントを複数のサーバに分散させること。
+論理構成
 
-これによって一台のマシンではスペックが足りないデータ量・高負荷も処理できる。
+![alt](./image/logicalArchtecture.png)
 
-elasticsearchは、クライアント側がシャードを意識しなくても使えるように隠蔽している。
-
-RDBのシャードに相当
-
---
-
-## Replica
-
-PrimaryNodeの完全なコピーをする。
-これによって並列処理・バックアップが可能になる。
-
-PrimaryNodeが死んだ場合、クラスタはReplicaから新しいPrimaryNodeを選ぶ。
+http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men
 
 --
 
 ## 図解
 
-http://blog.liip.ch/archive/2013/07/19/on-elasticsearch-performance.html
+物理構成
 
-http://blog.johtani.info/images/entries/20130830/IntroductionES20130829.pdf
+![alt](./image/physicalArchtecture.png)
 
 http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men
