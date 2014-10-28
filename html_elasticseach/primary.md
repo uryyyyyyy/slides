@@ -65,11 +65,15 @@ etc...
 
 ---
 
-## Analyzer
+## 構文解析
 
 構文解析（analyze）は、文字列を意味のある単位（term）に分割する。
 
-文字列ストリーム（入力）→事前フィルタリング（Character filters）→単語に分割（Tokenizer）→事後処理（TokenFilter）→保存（or検索）
+* 文字列ストリーム（Imput）→
+* 事前フィルタリング（Character filters）→
+* 単語に分割（Tokenizer）→
+* 事後処理（TokenFilter）→
+* 保存 or 検索(Output)
 
 という流れで処理される。
 
@@ -78,6 +82,36 @@ etc...
 https://www.found.no/foundation/text-analysis-part-1/
 
 --
+
+### analyzer
+
+analyzerは、文字列の分割方法を定義するtokenizerと、分割後の文字列の整形処理を定義するfilterによって構成されます。
+
+（先の流れ全体をまとめたものをanalyzerと呼ぶ。）
+
+例えば、tokenizerがngramで文字列を分割し、filterで大文字小文字を小文字に統一してしまうなどといった定義をすることが出来ます。
+
+analyzerはいくつでも定義することが出来き、Field毎にどのanalyzerを利用するか決めることが出来ます。
+
+http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html
+
+--
+
+### Example
+
+![alt](./image/custom_analyzers_diag.png)
+
+https://www.found.no/foundation/text-analysis-part-1/
+
+--
+
+### kuromoji
+
+日本語の形態素解析ソフト。
+
+elasticsearch向けにAnalyzerやtokenizerを提供しているみたい。
+
+[動作チェック](https://github.com/uryyyyyyy/elasticsearchSample/tree/master/script/kuromoji)
 
 ### Q
 
