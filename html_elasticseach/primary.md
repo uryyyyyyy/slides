@@ -3,15 +3,15 @@
 
 * Elasticsearchとは？
 * 全文検索の仕組み
-* Analyzer
 * 概念・単語
-* サンプル
+* 検索サンプル
+* JavaAPI
 
 ---
 
 ## Elasticsearchとは？
 
-Apache v2ライセンスで公開されているオープンソースソフトウェアであり、全文検索エンジンであるLuceneを使用した、全文検索システムです。
+全文検索エンジンであるLuceneを使用した全文検索システム。
 
 特徴として
 
@@ -38,7 +38,7 @@ etc...
 
 --
 
-## どんな用途に向いてる？
+### どんな用途に向いてる？
 
 * 大量データの全文検索（複数Nodeで分散処理できる・精度が高い）
 * あいまい検索・サジェストなどのリッチな検索全般
@@ -46,33 +46,37 @@ etc...
 
 --
 
-## できないこと
+### できないこと
 
 * Transactionの管理（rollbackなどの仕組み）
 * joinなど、複数データ構造の合成
 
-（あくまで検索専用というのが無難か）
+　
+
+（あくまで検索専用というのが無難かと）
 
 ---
 
 ## 全文検索の仕組み
 
 * データの登録
-	- 文字列→Analyzer→格納
+	- 文字列→構文解析→保存
 
 * データの検索
-	- 検索文字列→Analyzer→一致するtermを取得
+	- 検索文字列→構文解析→保存された中から一致するtermを取得
 
----
+https://github.com/uryyyyyyy/elasticsearchSample/blob/master/doc/analysis.md
+
+--
 
 ## 構文解析
 
 構文解析（analyze）は、文字列を意味のある単位（term）に分割する。
 
-* 文字列ストリーム（Imput）→
-* 事前フィルタリング（Character filters）→
-* 単語に分割（Tokenizer）→
-* 事後処理（TokenFilter）→
+* 文字列ストリーム（Imput）
+* 事前フィルタリング（Character filters）
+* 単語に分割（Tokenizer）
+* 事後処理（TokenFilter）
 * 保存 or 検索(Output)
 
 という流れで処理される。
@@ -86,8 +90,6 @@ https://www.found.no/foundation/text-analysis-part-1/
 ### analyzer
 
 analyzerは、文字列の分割方法を定義するtokenizerと、分割後の文字列の整形処理を定義するfilterによって構成されます。
-
-（先の流れ全体をまとめたものをanalyzerと呼ぶ。）
 
 例えば、tokenizerがngramで文字列を分割し、filterで大文字小文字を小文字に統一してしまうなどといった定義をすることが出来ます。
 
@@ -112,6 +114,31 @@ https://www.found.no/foundation/text-analysis-part-1/
 elasticsearch向けにAnalyzerやtokenizerを提供しているみたい。
 
 [動作チェック](https://github.com/uryyyyyyy/elasticsearchSample/tree/master/script/kuromoji)
+
+--
+
+### デモ
+
+https://github.com/uryyyyyyy/elasticsearchSample/tree/master/script/kuromoji
+
+--
+
+## Analyzerの使い分け
+
+(※あくまで一般論です。独自で定義することも可能です)
+
+* 部分一致・あいまいでもHitさせたい
+	- Titleやお店の名前など
+	- NgramAnalyzer
+
+* 検索ワードとしてふさわしくないものを除外したい。
+	- 前置詞、助詞、その他（the, a etc...）を省く
+	- stopAnalyzer
+
+* 日本語として検索したい
+	- 日本語は単語の切れ目がわかりにくいので専用のAnalyzerが必要
+	- KuromojiAnalyzer
+
 
 --
 
@@ -186,6 +213,13 @@ Sharding & replica
 
 http://blog.liip.ch/archive/2013/07/19/on-elasticsearch-performance.html
 
+--
+
+### Q
+
+どの範囲でclusterとして振る舞うの？同じLan内？
+
+→デフォルトだとMultiCastで探すらしい。（AWS内ではこれが使えないので別の方法を使うのだとか。）
 
 --
 
@@ -227,18 +261,76 @@ RDBのカラムに相当。
 
 ## 図解
 
-論理構成
-
 ![alt](./image/logicalArchtecture.png)
 
 http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men
 
 --
 
-## 図解
-
-物理構成
+## 図解２
 
 ![alt](./image/physicalArchtecture.png)
 
 http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men
+
+--
+
+### Q
+
+IndexとTypeってどう違うの？スキーマとかないんじゃない？
+
+→使用者が扱う論理単位がType・管理者が扱う物理単位がIndexじゃないかな？（曖昧）
+
+---
+
+## 検索サンプル
+
+検索には大きく３種類ある。
+
+* Query
+* Filter
+* Aggregation
+
+--
+
+### Query
+
+スタンダードな検索
+
+* 部分一致
+* スコアリング（検索の重み付け）
+* 検索文字列のAnalyzerの指定
+* 複数のクエリの論理和・論理積
+* 数値への範囲指定
+
+
+--
+
+### Filter
+
+やってることは簡易Queryと思えばいい。
+特徴として、
+
+* Scoreされないから速い。
+* Cacheが効く。
+
+用途としては、先にFilterでデータ群を用意しておくことでQueryの処理を効率化する。
+
+（OracleDBでいうマテリアルビューみたいなものかな）
+
+--
+
+### Aggregation
+
+集計系を扱うクエリ
+
+RDBでいうcountやaverageなどを担う。
+
+
+---
+
+## JavaAPI
+
+もちろん、Http経由でなくJavaAPIから直接叩くこともできる。
+
+（まだ書いてないので[こちらを参照](https://github.com/uryyyyyyy/elasticsearchSample/tree/master/JavaAPI)）
