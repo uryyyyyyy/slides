@@ -7,6 +7,8 @@
 * 検索サンプル
 * JavaAPI
 
+動作確認は[こちらで](https://github.com/uryyyyyyy/elasticsearchSample)
+
 ---
 
 ## Elasticsearchとは？
@@ -17,18 +19,18 @@
 
 * RESTfulなAPIが使える
 * InputもOutputもJSON
-* スキーマレスで面倒な定義無しにデータを登録可能
+* スキーマフリーなので面倒な定義無しにデータを登録可能
 
 等があります。
 
-from: http://dev.classmethod.jp/cloud/aws/use-elasticsearch-1-use-kuromoji/
+http://dev.classmethod.jp/cloud/aws/use-elasticsearch-1-use-kuromoji/
 
 --
 
 ### 何が嬉しいのか？
 
 * Nodeを複数立てることでスケールアウト可能
-* インクリメンタルサーチ
+* autocomplete・あいまい検索
 * 集計系のクエリが扱える
 * ネストしたデータ構造を扱える
 * 日本語の形態素解析ソフト「Kuromoji」が使える
@@ -93,7 +95,7 @@ analyzerは、文字列の分割方法を定義するtokenizerと、分割後の
 
 例えば、tokenizerがngramで文字列を分割し、filterで大文字小文字を小文字に統一してしまうなどといった定義をすることが出来ます。
 
-analyzerはいくつでも定義することが出来き、Field毎にどのanalyzerを利用するか決めることが出来ます。
+analyzerはいくつでも定義することが出来、Field毎にどのanalyzerを利用するか決めることが出来ます。
 
 http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html
 
@@ -114,12 +116,6 @@ https://www.found.no/foundation/text-analysis-part-1/
 elasticsearch向けにAnalyzerやtokenizerを提供しているみたい。
 
 [動作チェック](https://github.com/uryyyyyyy/elasticsearchSample/tree/master/script/kuromoji)
-
---
-
-### デモ
-
-https://github.com/uryyyyyyy/elasticsearchSample/tree/master/script/kuromoji
 
 --
 
@@ -334,3 +330,11 @@ RDBでいうcountやaverageなどを担う。
 もちろん、Http経由でなくJavaAPIから直接叩くこともできる。
 
 （まだ書いてないので[こちらを参照](https://github.com/uryyyyyyy/elasticsearchSample/tree/master/JavaAPI)）
+
+---
+
+## 疑問
+
+* RDBとの連携は？
+* データの整合性・一貫性は？
+* 他の全文検索システムは？比較は？

@@ -3,4 +3,4 @@
 
 * [入門](./primary.html)
 
-![alt](./images/elasticsearch.png)
+![alt](./image/elasticsearch.png)
