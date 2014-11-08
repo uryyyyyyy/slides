@@ -87,6 +87,10 @@
 * Service
 	- Logic部。ControllerとDaoを繋ぐ
 	- 主にContorllerから来たデータを処理して返す。
+
+
+--
+
 * DAO
 	- 外部と通信する役割。
 	- といってもAPサーバーへデータを送るだけなのでURL置き場になってる
