@@ -43,7 +43,8 @@
 	- 副作用を持たず、参照透過性を確保した処理の基本単位。
 
 * 副作用
-	- 一般に、「IOを扱う」「変数の値を変える」こと。（例：setter・ファイル出力）
+	- 一般に、「IOを扱う」「変数の値を変える」こと。
+	- 例：setter・ファイル出力
 
 ---
 
@@ -117,6 +118,8 @@
 
 ![alt](./img/namaketai.jpg)
 
+[せのちょや -Se-C-](http://blog.livedoor.jp/k_azk216/archives/1120211.html)
+
 --
 
 具体的には、
@@ -160,7 +163,7 @@
 
 そのオブジェクトの振る舞いの認識が開発者同士で異なっていた。
 
-* つまり、開発者同士で、そのオブジェクトの振る舞いをちゃんと摺り合わせて記憶する必要がある。
+* 開発者同士で、そのオブジェクトの振る舞いをちゃんとすり合わせる必要がある。
 
 --
 
@@ -190,7 +193,7 @@
 
 * 入力値さえ同じならいつ実行しても同じ結果になる。
 * 入力値が正しいかどうかは型で判断する。
-* 副作用は、普通想定できない＆確認するのが難しいため避ける。
+* 副作用は想定しにくい＆確認するのが難しいため避ける。
 
 　
 
@@ -225,7 +228,7 @@
 	- クライアント・DB・ファイルとのデータのやりとりは必須。
 
 * イミュータブルは処理効率が悪いケースもある。
-	- 一部だけ書き換えれば済むのに全て直すから。
+	- 一部だけ書き換えれば済むのに全て直す場合
 	- JavaでStringBuilderとか使うケース。
 
 --
@@ -238,6 +241,7 @@
 * 処理効率について
 	- 最適化はあとで考えればよい
 	- [Rob Pike のプログラミングに関する5つの掟](http://mattn.kaoriya.net/software/rob-pike-s-5-rules-of-programming.htm)
+	- どうしてもの場合は影響を局所化
 
 ---
 
@@ -402,7 +406,6 @@ case class Human( name:String , age:Int )
 ### Scalaでの書き方２
 
 ```
-
 # in REPL
 scala>val numbers = Set(1, 2, 3)
 numbers: scala.collection.immutable.Set[Int] = Set(1, 2, 3)
@@ -492,7 +495,9 @@ mutable（JavaのSetと同じ）にしたければ明示的にimportしてあげ
 
 ### 副作用のある処理
 
-(./img/fukusayou.gif)
+![alt](./img/fukusayou.gif)
+
+[水戸クリニック](http://www.tenkan.jp/fukusayou.htm)
 
 --
 
@@ -500,22 +505,19 @@ mutable（JavaのSetと同じ）にしたければ明示的にimportしてあげ
 
 一般に、「IOを扱う処理」「変数の値を変える処理」を副作用のある処理。
 
-純粋関数型言語では副作用のある処理は隔離するように強制されますが、JavaやScalaはそこまで厳密ではありません。
+純粋関数型言語では副作用のある処理は隔離するように強制されますが、JavaやScalaはそこまで徹底してくれません。
 
-よって、言語レベルで副作用のないことを担保することはできませんが、開発者同士で徹底することで分離させることは可能です。
+が、開発者同士で徹底することで分離させることは可能です。
 
-（ただ、うっかりバグが入り込む可能性は否定できませんが。）
+（うっかりバグが入り込む可能性は否定できませんが。）
 
 
 --
 
 ### Scalaでの書き方
 
-どうやって分けているか。
 
-　
-
-→純粋関数型言語でないので分割は保証されない。（Javaと同じレベル）
+純粋関数型言語でないので分割は保証されない。（Javaと同じレベル）
 
 
 --
@@ -524,11 +526,15 @@ mutable（JavaのSetと同じ）にしたければ明示的にimportしてあげ
 
 役割毎にオブジェクトを分ける。
 
+Dao・Fileアクセス・日付取得・などの処理は局所化する。
+
 ---
 
 ### Any Questions？
 
 ![alt](./img/aiaru_batou.jpg)
+
+[愛ある罵倒](http://www.fwinc.co.jp/batou/batou.php)
 
 ---
 
@@ -536,10 +542,9 @@ mutable（JavaのSetと同じ）にしたければ明示的にimportしてあげ
 ### Reference
 
 
-http://blog.livedoor.jp/k_azk216/archives/cat_22519.html
+* http://blog.livedoor.jp/k_azk216/archives/cat_22519.html
 
-http://qiita.com/f81@github/items/e8bfab96b4be9e404840
+* http://qiita.com/f81@github/items/e8bfab96b4be9e404840
 
-http://www.amazon.co.jp/dp/4774144363
+* http://www.amazon.co.jp/dp/4774144363
 
-http://blog.livedoor.jp/k_azk216/archives/cat_22519.html
