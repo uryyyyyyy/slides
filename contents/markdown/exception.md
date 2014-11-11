@@ -10,7 +10,7 @@
 
 ### 例外の種類
 
-![alt](./types.png)
+![alt](./img/exception_types.png)
 
 Errorは無視していいです。（自分で実装する機会があるとは思えないから。）
 

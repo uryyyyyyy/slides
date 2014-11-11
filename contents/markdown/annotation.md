@@ -165,7 +165,7 @@ Javadoc関連のアノテーション
 
 ## Any Question?
 
-![alt](./file/kiniiranai.jpg)
+![alt](./img/kiniiranai.jpg)
 
 > [やらおん](http://blog-imgs-64.fc2.com.yaraon-proxy2.yarareyaku.net/y/a/r/yaraon/oo_20140519004812630.jpg)
 
