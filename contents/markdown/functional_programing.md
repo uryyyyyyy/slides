@@ -474,12 +474,26 @@ mutable（JavaのSetと同じ）にしたければ明示的にimportしてあげ
 
 純粋な関数であることを言語レベルで保証しているわけではないので、Javaとあまり変わらない。
 
-ただ、関数を引数に取るAPIが用意されていたり、部分適用などができるのでより簡単に関数を扱える。
+ただ、関数を引数に取るAPIが用意されていたり、
+部分適用などができて、より簡単に関数を扱える。
 
-（関数を引数に取るAPIはJava8のStreamと同じかんじ）
+（関数を引数に取るAPIはJava8のStreamのイメージ）
 
 * [Scalaでカリー化と部分適用](http://qiita.com/f81@github/items/e8bfab96b4be9e404840)
 * [Scalaの機能 カリー化 部分適用](http://divide-et-impera.org/archives/835)
+
+--
+
+### Scalaでの書き方
+
+手続き的なループではなく、再帰を使うのが関数型流。
+
+再帰の欠点であるスタックオーバーフローもscalaだと（少し）サポートしている。
+
+（ただ、別にどっちでもいいじゃんと思う。）
+
+* [マンガで分かる Java入門講座](http://manga.crocro.com/?cat=java&pg=recursive_method)
+* [Scalaで再帰プログラミング](http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala-recursive.html#sec-4)
 
 --
 
