@@ -19,7 +19,7 @@
 
 - 継承関係
 
-![alt](./stream.jpg)
+![alt](.img//java_stream.jpg)
 
 > http://blog.csdn.net/sfdev/article/details/3771134
 

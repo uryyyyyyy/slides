@@ -139,7 +139,7 @@ OffsetDateTimeよりもZonedDateTimeを使えばいいじゃん。
 
 Duration Periodの計算はこんなことができる。
 
-![alt](./file/duration.png)
+![alt](./img/duration.png)
 
 
 --
@@ -188,7 +188,7 @@ Duration Periodの計算はこんなことができる。
 
 ## Any Question?
 
-![alt](./file/bakadana.jpg)
+![alt](./img/bakadana.jpg)
 
 > [ニコニコ静画](http://seiga.nicovideo.jp/seiga/im785518)
 

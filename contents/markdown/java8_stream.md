@@ -156,7 +156,7 @@ BinaryOperator<String> op = (s1, s2) -> s1 + s2;
 
 （primitive型用のIntStreamなどもあります。）
 
-![alt](./stream_1.png)
+![alt](./img/stream_1.png)
 
 > [1st8](http://www.first8.nl/presentations/java8/#/3/1)
 
@@ -340,7 +340,7 @@ supplierでインスタンス(`List<String>`）に、Streamから来た要素(St
 
 ## Any Question?
 
-![alt](./doraemon.jpg)
+![alt](./img/doraemon.jpg)
 
 > [http://livedoor.4.blogimg.jp/](http://livedoor.4.blogimg.jp/chihhylove/imgs/6/f/6f0e791f.jpg)
 
