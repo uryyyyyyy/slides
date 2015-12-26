@@ -37,6 +37,8 @@ slack webhook ＆ AWS Lambdaで作成
   - 当日雨予報（50%以上）だと時間ごとの降水量と共に通知。
   - IFTTTとかでもそれっぽいのはあったけど、詳細を知れて重宝している。
 
+[GitHub](https://github.com/TechResidence/slackBot)
+
 ---
 
 ## EHH hackason
@@ -57,10 +59,9 @@ slack webhook ＆ AWS Lambdaで作成
 
 ## EHH hackason
 
-<video>
-<source controls src="./img/VID_20151205_215834.mp4" width="600" height="400">
-<p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
-</video>
+<s>DEMO</s>
+
+動画が重たいのでやめた。
 
 ---
 
